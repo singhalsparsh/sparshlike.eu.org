@@ -36,11 +36,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('aura-theme', theme);
   }, [theme, mounted]);
 
-  // Always set indigo
-  useEffect(() => {
-    if (!mounted) return;
-    document.documentElement.setAttribute('data-color-theme', 'indigo');
-  }, [mounted]);
+  // Default brand color is red (--brand-hue: 0 in :root).
+  // data-color-theme is set by ColorThemePicker when user picks a different accent.
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));

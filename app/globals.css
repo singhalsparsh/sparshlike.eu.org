@@ -4,17 +4,25 @@
 
 @layer base {
   :root {
-    --brand-hue: 240;
+    --brand-hue: 0;
 
     --brand-50: var(--brand-hue) 100% 97%;
-    --brand-100: var(--brand-hue) 90% 92%;
-    --brand-200: var(--brand-hue) 85% 82%;
-    --brand-300: var(--brand-hue) 80% 65%;
+    --brand-100: var(--brand-hue) 95% 92%;
+    --brand-150: var(--brand-hue) 92% 87%;
+    --brand-200: var(--brand-hue) 88% 82%;
+    --brand-250: var(--brand-hue) 85% 74%;
+    --brand-300: var(--brand-hue) 82% 65%;
+    --brand-350: var(--brand-hue) 78% 57%;
     --brand-400: var(--brand-hue) 75% 50%;
+    --brand-450: var(--brand-hue) 75% 45%;
     --brand-500: var(--brand-hue) 75% 40%;
+    --brand-550: var(--brand-hue) 75% 36%;
     --brand-600: var(--brand-hue) 75% 32%;
+    --brand-650: var(--brand-hue) 72% 29%;
     --brand-700: var(--brand-hue) 70% 26%;
+    --brand-750: var(--brand-hue) 70% 22%;
     --brand-800: var(--brand-hue) 70% 18%;
+    --brand-850: var(--brand-hue) 70% 14%;
     --brand-900: var(--brand-hue) 70% 10%;
 
     --font-sans: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
@@ -22,6 +30,7 @@
     --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
   }
 
+  [data-color-theme='red'] { --brand-hue: 0; }
   [data-color-theme='emerald'] { --brand-hue: 165; }
   [data-color-theme='rose'] { --brand-hue: 340; }
   [data-color-theme='amber'] { --brand-hue: 32; }
