@@ -1,12 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
-import { Hero } from '@/components/sections/Hero';
-import { About } from '@/components/sections/About';
-import { Projects } from '@/components/sections/Projects';
-import { Testimonials } from '@/components/sections/Testimonials';
-import { ContactSection } from '@/components/sections/Contact';
+import dynamic from 'next/dynamic';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { LiquidGlassCard } from '@/components/ui/liquid-glass-card';
@@ -14,31 +8,23 @@ import { GlassButton } from '@/components/ui/glass-button';
 import { DotPattern } from '@/components/ui/dot-pattern';
 import { blogPosts } from '@/lib/portfolio-data';
 
+// ── Eager: hero is above the fold ──
+import { Hero } from '@/components/sections/Hero';
+
+// ── Lazy: sections below the fold (client-only) ──
+const About = dynamic(() => import('@/components/sections/About').then((m) => m.About), { ssr: false });
+const Projects = dynamic(() => import('@/components/sections/Projects').then((m) => m.Projects), { ssr: false });
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials').then((m) => m.Testimonials), { ssr: false });
+const ContactSection = dynamic(() => import('@/components/sections/Contact').then((m) => m.ContactSection), { ssr: false });
+
+// ── Lazy: smooth-scroll library ──
+const LenisScript = dynamic(() => import('./lenis-script'), { ssr: false });
+
 export default function HomePage() {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-    });
-
-    function onFrame(time: number) {
-      lenis.raf(time);
-    }
-
-    requestAnimationFrame(function animate(time: number) {
-      onFrame(time);
-      requestAnimationFrame(animate);
-    });
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
 
   return (
     <main className="relative z-30">
+      <LenisScript />
       <Hero />
 
       {/* About Preview */}

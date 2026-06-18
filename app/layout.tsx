@@ -1,21 +1,25 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AnnouncementBar } from '@/components/AnnouncementBar';
 import { Nav } from '@/components/Nav';
-import { CustomCursor } from '@/components/ui/custom-cursor';
-import { ScrollProgress } from '@/components/ui/scroll-progress';
-import { AnimatedBackground } from '@/components/ui/animated-background';
-import { CommandPalette } from '@/components/ui/command-palette';
 import { Footer } from '@/components/sections/Footer';
 import { ToastProvider } from '@/components/ui/toast';
 import { SkipLink } from '@/components/ui/skip-link';
-import { ScrollToTop } from '@/components/ui/scroll-to-top';
-import { ContextMenu } from '@/components/ui/context-menu';
-import { ConsoleWelcome } from '@/components/ui/console-welcome';
-import { MusicPlayerProvider, MusicPlayer } from '@/components/music';
-import { ErrorBoundary } from '@/components/ui/error-boundary';
+import { MusicPlayerProvider } from '@/components/music';
+
+// ── Lazy-loaded non-critical components (code-split, server-rendered) ──
+const CustomCursor = dynamic(() => import('@/components/ui/custom-cursor').then((m) => m.CustomCursor));
+const ScrollProgress = dynamic(() => import('@/components/ui/scroll-progress').then((m) => m.ScrollProgress));
+const AnimatedBackground = dynamic(() => import('@/components/ui/animated-background').then((m) => m.AnimatedBackground));
+const CommandPalette = dynamic(() => import('@/components/ui/command-palette').then((m) => m.CommandPalette));
+const ContextMenu = dynamic(() => import('@/components/ui/context-menu').then((m) => m.ContextMenu));
+const ConsoleWelcome = dynamic(() => import('@/components/ui/console-welcome').then((m) => m.ConsoleWelcome));
+const ScrollToTop = dynamic(() => import('@/components/ui/scroll-to-top').then((m) => m.ScrollToTop));
+const ErrorBoundary = dynamic(() => import('@/components/ui/error-boundary').then((m) => m.ErrorBoundary));
+const MusicPlayer = dynamic(() => import('@/components/music').then((m) => m.MusicPlayer));
 
 const inter = Inter({
   subsets: ['latin'],
