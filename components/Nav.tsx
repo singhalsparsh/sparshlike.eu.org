@@ -157,7 +157,7 @@ export function Nav() {
       <div
         className={cn(
           'flex items-center justify-between',
-          'rounded-[60px]',
+          'rounded-[24px] sm:rounded-[60px]',
           'transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
           // ── THEME: glass in both modes ──
           'bg-white/80 dark:bg-[#0a0e1a]/80',
@@ -165,12 +165,12 @@ export function Nav() {
           'border',
           // Initial (at top) - most subtle
           !isScrolled && [
-            'py-1.5 px-3 sm:px-4',
+            'py-1.5 px-2.5 sm:px-4',
             'shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(99,102,241,0.06)]',
             'border-gray-200/50 dark:border-brand-400/20',
             'hover:border-brand-400/30 dark:hover:border-brand-400/40',
             'hover:shadow-[0_8px_32px_hsl(var(--brand-400)/0.1)] dark:hover:shadow-[0_8px_32px_hsl(var(--brand-400)/0.15)]',
-            'min-w-[260px] sm:min-w-[340px] md:min-w-[auto]',
+            'w-[calc(100vw-16px)] sm:w-auto sm:min-w-[340px] md:min-w-[auto]',
           ],
           // Medium (scrolled a little) - bigger than initial, smaller than expanded
           isMedium && [
@@ -178,7 +178,7 @@ export function Nav() {
             'shadow-[0_8px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_40px_rgba(99,102,241,0.10)]',
             'border-brand-400/20 dark:border-brand-400/30',
             'hover:shadow-[0_12px_48px_hsl(var(--brand-400)/0.18)]',
-            'min-w-[280px] sm:min-w-[400px] md:min-w-[480px]',
+            'w-[calc(100vw-24px)] sm:w-auto sm:min-w-[400px] md:min-w-[480px]',
           ],
           // Expanded (scrolled far) - largest
           isExpanded && [
@@ -186,7 +186,7 @@ export function Nav() {
             'shadow-[0_16px_56px_rgba(0,0,0,0.18)] dark:shadow-[0_16px_56px_rgba(99,102,241,0.12)]',
             'border-brand-400/40 dark:border-brand-400/50',
             'hover:shadow-[0_16px_64px_hsl(var(--brand-400)/0.25)]',
-            'min-w-[320px] sm:min-w-[460px] md:min-w-[620px]',
+            'w-[calc(100vw-24px)] sm:w-auto sm:min-w-[460px] md:min-w-[620px]',
           ],
         )}
       >

@@ -63,21 +63,21 @@ export function Skills() {
         <div className="max-w-4xl mx-auto px-2 sm:px-0">
           {skillCategories.map((skill, index) => (
             <div key={skill.category}>
-              <div className="group grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 py-4 sm:py-5 items-center hover:bg-foreground/[0.02] transition-colors rounded-lg px-3 sm:px-4 -mx-2 sm:-mx-4">
+              <div className="group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 py-3 sm:py-5 items-center hover:bg-foreground/[0.02] transition-colors rounded-lg px-2 sm:px-4 -mx-2 sm:-mx-4">
                 {/* Category */}
                 <div className="sm:col-span-3">
-                  <span className="text-xs sm:text-sm font-semibold text-foreground tracking-wide uppercase">
+                  <span className="text-[11px] sm:text-sm font-semibold text-foreground tracking-wide uppercase">
                     {skill.category}
                   </span>
                 </div>
 
                 {/* Technologies */}
                 <div className="sm:col-span-5">
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {skill.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-medium bg-brand-500/10 text-brand-300 border border-brand-500/20"
+                        className="inline-flex items-center px-1.5 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-medium bg-brand-500/10 text-brand-300 border border-brand-500/20"
                       >
                         {tech}
                       </span>
@@ -86,9 +86,9 @@ export function Skills() {
                 </div>
 
                 {/* Years + Growth bar side by side on mobile */}
-                <div className="flex sm:col-span-4 items-center justify-between sm:justify-start gap-3 sm:gap-4">
+                <div className="flex sm:col-span-4 items-center justify-between sm:justify-start gap-2 sm:gap-4">
                   {/* Years */}
-                  <div className="text-xs sm:text-sm text-foreground/40 shrink-0">
+                  <div className="text-[11px] sm:text-sm text-foreground/40 shrink-0">
                     <span className="text-foreground/80 font-medium">{skill.years}</span> yrs
                   </div>
 

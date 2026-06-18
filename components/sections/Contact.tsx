@@ -125,7 +125,7 @@ export function ContactSection() {
                     required
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full rounded-xl bg-foreground/[0.03] border border-foreground/10 px-4 md:px-5 py-3 md:py-3.5 text-sm md:text-base text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/20 focus:bg-foreground/[0.05] transition-all"
+                    className="w-full rounded-xl bg-foreground/[0.03] border border-foreground/10 px-4 md:px-5 py-3.5 md:py-3.5 text-sm md:text-base text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/20 focus:bg-foreground/[0.05] transition-all"
                     placeholder="Your name"
                   />
                 </div>
@@ -140,7 +140,7 @@ export function ContactSection() {
                     required
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl bg-foreground/[0.03] border border-foreground/10 px-4 md:px-5 py-3 md:py-3.5 text-sm md:text-base text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/20 focus:bg-foreground/[0.05] transition-all"
+                    className="w-full rounded-xl bg-foreground/[0.03] border border-foreground/10 px-4 md:px-5 py-3.5 md:py-3.5 text-sm md:text-base text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/20 focus:bg-foreground/[0.05] transition-all"
                     placeholder="your@email.com"
                   />
                 </div>

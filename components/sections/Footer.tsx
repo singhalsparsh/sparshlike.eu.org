@@ -46,7 +46,7 @@ export function Footer() {
   return (
     <footer className="relative z-20 glass-footer">
       <div className="relative z-10">
-        <div className="container mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-8 sm:pb-10">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-8 sm:pb-10">
           {/* Main grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
             {/* Brand column */}
@@ -131,19 +131,19 @@ export function Footer() {
               </p>
               <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto sm:mx-0">
                 <div className="flex-1 relative">
-                  <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/25" />
+                  <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-foreground/25" />
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
                     required
-                    className="w-full rounded-full bg-foreground/[0.05] border border-foreground/10 pl-9 pr-4 py-2.5 text-sm text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/20 transition-all"
+                    className="w-full rounded-full bg-foreground/[0.05] border border-foreground/10 pl-9 pr-4 py-3 sm:py-2.5 text-sm text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-brand-500/50 focus:ring-2 focus:ring-brand-500/20 transition-all"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto shrink-0 px-4 py-2.5 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm font-semibold hover:shadow-[0_4px_20px_hsl(var(--brand-400)/0.3)] transition-all hover:scale-[1.02]"
+                  className="w-full sm:w-auto shrink-0 px-5 py-3 sm:py-2.5 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm font-semibold hover:shadow-[0_4px_20px_hsl(var(--brand-400)/0.3)] transition-all hover:scale-[1.02]"
                 >
                   Subscribe
                 </button>

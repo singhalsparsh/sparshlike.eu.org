@@ -105,25 +105,25 @@ export function Hero() {
             {/* Stats row */}
             <div
               ref={statsRef}
-              className="mt-8 md:mt-12 flex gap-6 md:gap-8"
+              className="mt-8 md:mt-12 flex gap-5 sm:gap-6 md:gap-8"
             >
-              <div>
-                <div className="text-xl md:text-2xl font-bold text-foreground">
+              <div className="flex-1 sm:flex-initial">
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                   <AnimatedCounter target={5} suffix="+" />
                 </div>
-                <div className="text-xs md:text-sm text-foreground/40">Years Exp.</div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Years Exp.</div>
               </div>
-              <div>
-                <div className="text-xl md:text-2xl font-bold text-foreground">
+              <div className="flex-1 sm:flex-initial">
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                   <AnimatedCounter target={50} suffix="+" />
                 </div>
-                <div className="text-xs md:text-sm text-foreground/40">Projects</div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Projects</div>
               </div>
-              <div>
-                <div className="text-xl md:text-2xl font-bold text-foreground">
+              <div className="flex-1 sm:flex-initial">
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
                   <AnimatedCounter target={30} suffix="+" />
                 </div>
-                <div className="text-xs md:text-sm text-foreground/40">Clients</div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Clients</div>
               </div>
             </div>
           </div>

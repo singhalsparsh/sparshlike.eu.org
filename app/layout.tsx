@@ -75,7 +75,7 @@ export default function RootLayout({
               <Nav />
               <ScrollProgress />
               <AnimatedBackground />
-              <div id="main-content" className="relative z-10 pb-16 md:pb-20">
+              <div id="main-content" className="relative z-10 pb-20 md:pb-24">
                 {children}
               </div>
               <Footer />

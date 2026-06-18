@@ -78,7 +78,7 @@ export default function HomePage() {
                     <h3 className="text-sm sm:text-lg font-semibold text-foreground mb-2 group-hover:text-brand-300 transition-colors leading-snug sm:leading-normal">
                       {post.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-foreground/50 mb-4 flex-1 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-foreground/50 mb-4 flex-1 leading-relaxed line-clamp-3 sm:line-clamp-none">
                       {post.excerpt}
                     </p>
                     <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-foreground/5">

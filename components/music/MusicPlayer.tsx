@@ -73,6 +73,7 @@ export function MusicPlayer() {
 
   const [isDragging, setIsDragging] = useState(false);
   const progressRef = useRef<HTMLDivElement>(null);
+  const mobileProgressRef = useRef<HTMLDivElement>(null);
   const [hoverProgress, setHoverProgress] = useState<number | null>(null);
   const [showVolume, setShowVolume] = useState(false);
   const volumeTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
@@ -153,8 +154,8 @@ export function MusicPlayer() {
       <FullscreenPlayer />
 
       {/* Apple Music-style floating player with 3D tilt */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] px-3 sm:px-5 w-full pointer-events-none">
-        <div className="mx-auto max-w-xl lg:max-w-2xl pointer-events-auto relative">
+      <div className="fixed bottom-0 sm:bottom-5 left-0 sm:left-1/2 sm:-translate-x-1/2 z-[60] px-0 sm:px-5 w-full pointer-events-none">
+        <div className="mx-auto w-full sm:max-w-xl lg:max-w-2xl pointer-events-auto relative">
           {/* Ambient glow when playing */}
           {isPlaying && hasTrack && (
             <div className="absolute -inset-6 rounded-full bg-brand-500/6 blur-[60px] -z-10 animate-pulse" style={{animationDuration: '4s'}} />
@@ -193,7 +194,8 @@ export function MusicPlayer() {
             {hasTrack && (
               <div
                 ref={progressRef}
-                className="absolute top-0 left-0 right-0 h-1 cursor-pointer group z-20"
+                className="absolute top-0 left-0 right-0 h-1 sm:h-1.5 cursor-pointer group z-20
+                  before:absolute before:inset-x-0 before:-top-2 before:-bottom-2 sm:before:-top-1 sm:before:-bottom-1"
                 onMouseDown={handleProgressMouseDown}
                 onTouchStart={(e) => { setIsDragging(true); handleProgressInteraction(e); }}
                 onTouchMove={handleProgressInteraction}
@@ -234,156 +236,193 @@ export function MusicPlayer() {
             )}
 
             {/* ── Content ── */}
-            <div className={cn('relative z-10', hasTrack ? 'pt-2.5 pb-2 px-3 sm:px-4' : 'py-2.5 px-3 sm:px-4')}>
+            <div className={cn('relative z-10', hasTrack ? 'pt-2.5 pb-1.5 sm:pb-2 px-2.5 sm:px-4' : 'py-2.5 px-3 sm:px-4')}>
               {hasTrack ? (
-                <div className="flex items-center gap-2 sm:gap-3">
-
-                  {/* ── LEFT: Album art + Info ── */}
-                  <div className="flex items-center gap-2.5 min-w-0 flex-1 sm:flex-initial">
-                    <div className={cn(
-                      'relative w-10 h-10 sm:w-11 sm:h-11 rounded-lg overflow-hidden shrink-0',
-                      'bg-brand-400/10 shadow-[0_2px_8px_rgba(0,0,0,0.15)]',
-                      isPlaying && 'shadow-[0_0_12px_hsl(var(--brand-400)/0.2)]',
-                    )}>
-                      {currentTrack.albumArt ? (
-                        <img src={currentTrack.albumArt} alt={currentTrack.title} className="w-full h-full object-cover" onError={handleThumbnailError} />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Disc3 size={16} className="text-brand-400/40" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="min-w-0 max-w-[90px] sm:max-w-[140px] md:max-w-[180px]">
-                      <p className="text-sm font-semibold text-gray-900 dark:text-white truncate leading-tight">
-                        {currentTrack.title}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate leading-tight mt-0.5">
-                        {currentTrack.artist}
-                      </p>
-                    </div>
-                    {/* Playing indicator */}
-                    {isPlaying ? (
-                      <div className="hidden sm:block"><MiniEqualizer /></div>
-                    ) : (
-                      <div className="hidden sm:block w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600" />
-                    )}
-                  </div>
-
-                  {/* ── CENTER: Controls ── */}
-                  <div className="flex items-center gap-0.5 sm:gap-1">
-                    <button onClick={prev}
-                      className="hidden sm:flex items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-500 dark:hover:text-brand-300 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
-                      aria-label="Previous"
-                    >
-                      <SkipBack size={12} />
-                    </button>
-
-                    <div className="relative flex items-center justify-center">
-                      {isPlaying && (
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                          <div className="w-8 h-8 rounded-full bg-brand-500/15 animate-player-pulse-ring" />
-                        </div>
-                      )}
-                      <button onClick={togglePlay}
-                        className={cn(
-                          'relative flex items-center justify-center w-8 h-8 rounded-full text-white transition-all active:scale-90 z-10 hover:scale-105',
-                          isPlaying
-                            ? 'bg-brand-500 shadow-[0_0_12px_hsl(var(--brand-400)/0.35)] hover:shadow-[0_0_20px_hsl(var(--brand-400)/0.5)]'
-                            : 'bg-brand-500 shadow-[0_0_8px_hsl(var(--brand-400)/0.25)] hover:shadow-[0_0_16px_hsl(var(--brand-400)/0.4)]'
+                <div className={cn(
+                  'flex flex-col',
+                  // On mobile: stack info+controls, then progress
+                  'gap-1 sm:gap-0',
+                )}>
+                  {/* ── ROW 1: Info + Controls ── */}
+                  <div className="flex items-center justify-between gap-1.5 sm:gap-3">
+                    {/* LEFT: Album art + Info */}
+                    <div className="flex items-center gap-2 min-w-0 flex-1 sm:flex-initial">
+                      <div className={cn(
+                        'relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden shrink-0',
+                        'bg-brand-400/10 shadow-[0_2px_8px_rgba(0,0,0,0.15)]',
+                        isPlaying && 'shadow-[0_0_12px_hsl(var(--brand-400)/0.2)]',
+                      )}>
+                        {currentTrack.albumArt ? (
+                          <img src={currentTrack.albumArt} alt={currentTrack.title} className="w-full h-full object-cover" onError={handleThumbnailError} />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Disc3 size={16} className="text-brand-400/40" />
+                          </div>
                         )}
-                        aria-label={isPlaying ? 'Pause' : 'Play'}
-                      >
-                        {isPlaying ? <Pause size={13} fill="currentColor" /> : <Play size={13} fill="currentColor" className="ml-0.5" />}
-                      </button>
+                      </div>
+                      <div className="min-w-0 max-w-[110px] sm:max-w-[140px] md:max-w-[180px]">
+                        <p className="text-[13px] sm:text-sm font-semibold text-gray-900 dark:text-white truncate leading-tight">
+                          {currentTrack.title}
+                        </p>
+                        <p className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 truncate leading-tight mt-0.5">
+                          {currentTrack.artist}
+                        </p>
+                      </div>
+                      {/* Playing indicator (desktop only) */}
+                      {isPlaying ? (
+                        <div className="hidden sm:block"><MiniEqualizer /></div>
+                      ) : (
+                        <div className="hidden sm:block w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600" />
+                      )}
                     </div>
 
-                    <button onClick={next}
-                      className="hidden sm:flex items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-500 dark:hover:text-brand-300 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
-                      aria-label="Next"
-                    >
-                      <SkipForward size={12} />
-                    </button>
+                    {/* RIGHT: Controls */}
+                    <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
+                      {/* Prev (desktop) */}
+                      <button onClick={prev}
+                        className="hidden sm:flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-500 dark:hover:text-brand-300 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
+                        aria-label="Previous"
+                      >
+                        <SkipBack size={12} />
+                      </button>
+
+                      <div className="relative flex items-center justify-center">
+                        {isPlaying && (
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-brand-500/15 animate-player-pulse-ring" />
+                          </div>
+                        )}
+                        <button onClick={togglePlay}
+                          className={cn(
+                            'relative flex items-center justify-center w-10 h-10 sm:w-8 sm:h-8 rounded-full text-white transition-all active:scale-90 z-10 hover:scale-105',
+                            isPlaying
+                              ? 'bg-brand-500 shadow-[0_0_12px_hsl(var(--brand-400)/0.35)] hover:shadow-[0_0_20px_hsl(var(--brand-400)/0.5)]'
+                              : 'bg-brand-500 shadow-[0_0_8px_hsl(var(--brand-400)/0.25)] hover:shadow-[0_0_16px_hsl(var(--brand-400)/0.4)]'
+                          )}
+                          aria-label={isPlaying ? 'Pause' : 'Play'}
+                        >
+                          {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-0.5" />}
+                        </button>
+                      </div>
+
+                      {/* Next (desktop) */}
+                      <button onClick={next}
+                        className="hidden sm:flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-500 dark:hover:text-brand-300 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
+                        aria-label="Next"
+                      >
+                        <SkipForward size={12} />
+                      </button>
+
+                      {/* Time (mobile) */}
+                      <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono sm:hidden min-w-[32px] text-center">
+                        {formatTime(currentTime)}
+                      </span>
+
+                      {/* Loop toggle */}
+                      <button onClick={toggleLoop}
+                        className={cn(
+                          'flex items-center justify-center w-8 h-8 sm:w-7 sm:h-7 rounded-full transition-all hover:scale-110 active:scale-90',
+                          isLooping
+                            ? 'text-brand-400 bg-brand-400/12'
+                            : 'text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10'
+                        )}
+                        aria-label="Toggle loop"
+                      >
+                        {isLooping ? <Repeat1 size={12} /> : <Repeat size={12} />}
+                      </button>
+
+                      {/* Fullscreen */}
+                      {hasTrack && (
+                        <button onClick={toggleFullscreen}
+                          className="flex items-center justify-center w-8 h-8 sm:w-7 sm:h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
+                          aria-label="Fullscreen"
+                        >
+                          <Maximize2 size={12} />
+                        </button>
+                      )}
+
+                      {/* Volume (desktop) */}
+                      <div
+                        ref={volumeContainerRef}
+                        className="relative hidden md:block"
+                        onMouseEnter={handleVolumeEnter}
+                        onMouseLeave={handleVolumeLeave}
+                      >
+                        <button
+                          className="flex items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
+                          aria-label="Volume"
+                        >
+                          <VolumeIcon volume={volume} />
+                        </button>
+                        {showVolume && (
+                          <div
+                            onMouseEnter={handleVolumeEnter}
+                            onMouseLeave={handleVolumeLeave}
+                            className="absolute right-full top-1/2 -translate-y-1/2 mr-2 p-2 rounded-xl bg-white/90 dark:bg-[#0a0e1a]/90 backdrop-blur-[24px] border border-white/20 dark:border-brand-400/15 shadow-lg animate-in fade-in zoom-in-95 slide-in-from-right-2 duration-150"
+                          >
+                            <input type="range" min={0} max={1} step={0.01}
+                              value={volume}
+                              onChange={(e) => setVolume(parseFloat(e.target.value))}
+                              className="w-16 h-1 appearance-none bg-black/10 dark:bg-white/10 rounded-full cursor-pointer
+                                [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2.5 [&::-webkit-slider-thumb]:h-2.5
+                                [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-400
+                                [&::-webkit-slider-thumb]:shadow-[0_0_6px_hsl(var(--brand-400)/0.5)]
+                                [&::-moz-range-thumb]:w-2.5 [&::-moz-range-thumb]:h-2.5 [&::-moz-range-thumb]:rounded-full
+                                [&::-moz-range-thumb]:bg-brand-400 [&::-moz-range-thumb]:border-0"
+                              aria-label="Volume"
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Search */}
+                      <button onClick={toggleSearch}
+                        className="flex items-center justify-center w-8 h-8 sm:w-7 sm:h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
+                        aria-label="Search music"
+                      >
+                        <Search size={12} />
+                      </button>
+
+                      {/* Mobile next */}
+                      <button onClick={next}
+                        className="flex sm:hidden items-center justify-center w-8 h-8 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-300 transition-all hover:scale-110 active:scale-90"
+                        aria-label="Next"
+                      >
+                        <SkipForward size={12} />
+                      </button>
+                    </div>
                   </div>
 
-                  {/* ── RIGHT: Actions ── */}
-                  <div className="flex items-center gap-0.5 sm:gap-1 ml-auto">
-                    {/* Time (mobile) */}
-                    <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono sm:hidden mr-1">
-                      {formatTime(currentTime)}
-                    </span>
-
-                    {/* Loop toggle */}
-                    <button onClick={toggleLoop}
-                      className={cn(
-                        'flex items-center justify-center w-7 h-7 rounded-full transition-all hover:scale-110 active:scale-90',
-                        isLooping
-                          ? 'text-brand-400 bg-brand-400/12'
-                          : 'text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10'
-                      )}
-                      aria-label="Toggle loop"
-                    >
-                      {isLooping ? <Repeat1 size={12} /> : <Repeat size={12} />}
-                    </button>
-
-                    {/* Lyrics / Fullscreen */}
-                    {hasTrack && (
-                      <button onClick={toggleFullscreen}
-                        className="flex items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
-                        aria-label="Fullscreen"
-                      >
-                        <Maximize2 size={12} />
-                      </button>
-                    )}
-
-                    {/* Volume (desktop) */}
+                  {/* ── ROW 2: Mobile progress bar strip ── */}
+                  <div className="flex sm:hidden items-center gap-2 px-0.5">
                     <div
-                      ref={volumeContainerRef}
-                      className="relative hidden md:block"
-                      onMouseEnter={handleVolumeEnter}
-                      onMouseLeave={handleVolumeLeave}
+                      ref={mobileProgressRef}
+                      className="flex-1 h-1.5 bg-black/[0.08] dark:bg-white/[0.08] rounded-full cursor-pointer group relative"
+                      onTouchStart={(e) => {
+                        e.preventDefault();
+                        setIsDragging(true);
+                        if (!mobileProgressRef.current || !duration) return;
+                        const rect = mobileProgressRef.current.getBoundingClientRect();
+                        const ratio = Math.max(0, Math.min(1, (e.touches[0].clientX - rect.left) / rect.width));
+                        seek(ratio * duration);
+                      }}
+                      onTouchMove={(e) => {
+                        e.preventDefault();
+                        if (!mobileProgressRef.current || !duration || !isDragging) return;
+                        const rect = mobileProgressRef.current.getBoundingClientRect();
+                        const ratio = Math.max(0, Math.min(1, (e.touches[0].clientX - rect.left) / rect.width));
+                        seek(ratio * duration);
+                      }}
+                      onTouchEnd={() => setIsDragging(false)}
                     >
-                      <button
-                        className="flex items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
-                        aria-label="Volume"
-                      >
-                        <VolumeIcon volume={volume} />
-                      </button>
-                      {showVolume && (
-                        <div
-                          onMouseEnter={handleVolumeEnter}
-                          onMouseLeave={handleVolumeLeave}
-                          className="absolute right-full top-1/2 -translate-y-1/2 mr-2 p-2 rounded-xl bg-white/90 dark:bg-[#0a0e1a]/90 backdrop-blur-[24px] border border-white/20 dark:border-brand-400/15 shadow-lg animate-in fade-in zoom-in-95 slide-in-from-right-2 duration-150"
-                        >
-                          <input type="range" min={0} max={1} step={0.01}
-                            value={volume}
-                            onChange={(e) => setVolume(parseFloat(e.target.value))}
-                            className="w-16 h-1 appearance-none bg-black/10 dark:bg-white/10 rounded-full cursor-pointer
-                              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2.5 [&::-webkit-slider-thumb]:h-2.5
-                              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-400
-                              [&::-webkit-slider-thumb]:shadow-[0_0_6px_hsl(var(--brand-400)/0.5)]
-                              [&::-moz-range-thumb]:w-2.5 [&::-moz-range-thumb]:h-2.5 [&::-moz-range-thumb]:rounded-full
-                              [&::-moz-range-thumb]:bg-brand-400 [&::-moz-range-thumb]:border-0"
-                            aria-label="Volume"
-                          />
-                        </div>
-                      )}
+                      <div
+                        className="h-full bg-gradient-to-r from-brand-500 via-brand-400 to-brand-300 rounded-full relative transition-all duration-75"
+                        style={{ width: `${progress}%` }}
+                      />
                     </div>
-
-                    {/* Search */}
-                    <button onClick={toggleSearch}
-                      className="flex items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-400 hover:bg-brand-400/10 transition-all hover:scale-110 active:scale-90"
-                      aria-label="Search music"
-                    >
-                      <Search size={12} />
-                    </button>
-
-                    {/* Mobile skip forward */}
-                    <button onClick={next}
-                      className="flex sm:hidden items-center justify-center w-7 h-7 rounded-full text-gray-500 dark:text-gray-400 hover:text-brand-300 transition-all hover:scale-110 active:scale-90"
-                      aria-label="Next"
-                    >
-                      <SkipForward size={12} />
-                    </button>
+                    <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono min-w-[32px] text-right">
+                      {formatTime(duration)}
+                    </span>
                   </div>
                 </div>
               ) : (
