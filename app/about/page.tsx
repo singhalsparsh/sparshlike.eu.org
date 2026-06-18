@@ -86,7 +86,7 @@ export default function AboutPage() {
         <DotPattern opacity={0.04} />
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div>
+            <div className="text-center sm:text-left">
               <h2 className="display-2 mb-6">
                 My <span className="text-gradient">Journey</span>
               </h2>
@@ -106,7 +106,7 @@ export default function AboutPage() {
                   open source projects, or mentoring aspiring developers through community programs.
                 </p>
               </div>
-              <div className="mt-6 flex gap-3 md:gap-4 flex-wrap">
+              <div className="mt-6 flex justify-center sm:justify-start gap-3 md:gap-4 flex-wrap">
                 <div className="glass-strong rounded-xl p-3 md:p-4 text-center flex-1 min-w-[80px] md:min-w-[100px]">
                   <div className="text-lg md:text-2xl font-bold text-gradient">5+</div>
                   <div className="text-[10px] md:text-xs text-foreground/40 mt-1">Years Exp.</div>
@@ -123,12 +123,12 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {skillAreas.map((area) => (
-                <LiquidGlassCard key={area.title} className="p-4 md:p-5" glowColor="hsl(var(--brand-400) / 0.1)">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${area.color} flex items-center justify-center mb-3`}>
+                <LiquidGlassCard key={area.title} className="p-4 md:p-5 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.1)">
+                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${area.color} flex items-center justify-center mb-3 mx-auto sm:mx-0`}>
                     <area.icon size={14} className="text-white" />
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-2">{area.title}</h3>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-1">
                     {area.skills.slice(0, 3).map((s) => (
                       <span key={s} className="text-[10px] px-1.5 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20">
                         {s}
@@ -210,8 +210,8 @@ export default function AboutPage() {
 
           <div className="max-w-2xl mx-auto">
             {education.map((item) => (
-              <LiquidGlassCard key={item.degree} className="p-6 md:p-8" glowColor="hsl(var(--brand-400) / 0.08)">
-                <div className="flex items-start gap-4">
+              <LiquidGlassCard key={item.degree} className="p-6 md:p-8 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.08)">
+                <div className="flex items-start justify-center sm:justify-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center shrink-0">
                     <GraduationCap size={20} className="text-brand-400" />
                   </div>
@@ -248,7 +248,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {funFacts.map((fact) => (
-              <LiquidGlassCard key={fact.fact} className="p-5 md:p-6" glowColor="hsl(var(--brand-400) / 0.06)">
+              <LiquidGlassCard key={fact.fact} className="p-5 md:p-6 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.06)">
                 <div className="text-2xl mb-3">{fact.emoji}</div>
                 <p className="text-sm text-foreground/70 leading-relaxed">{fact.fact}</p>
               </LiquidGlassCard>

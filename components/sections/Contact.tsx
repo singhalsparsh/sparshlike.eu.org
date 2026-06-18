@@ -40,12 +40,12 @@ export function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 px-2 sm:px-0">
           {/* Left: Contact info */}
           <div className="space-y-4 md:space-y-6">
-            <LiquidGlassCard className="p-5 md:p-8" interactive glowColor="hsl(var(--brand-400) / 0.15)">
+            <LiquidGlassCard className="p-5 md:p-8 text-center sm:text-left" interactive glowColor="hsl(var(--brand-400) / 0.15)">
               <h3 className="text-base md:text-xl font-semibold text-foreground mb-4 md:mb-6">
                 Contact Information
               </h3>
               <div className="space-y-4 md:space-y-5">
-                <div className="flex items-center gap-3 md:gap-4">
+                <div className="flex items-center justify-center sm:justify-start gap-3 md:gap-4">
                   <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand-500/15 shrink-0">
                     <Mail size={16} className="text-brand-400" />
                   </div>
@@ -59,7 +59,7 @@ export function ContactSection() {
                     </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 md:gap-4">
+                <div className="flex items-center justify-center sm:justify-start gap-3 md:gap-4">
                   <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand-500/15 shrink-0">
                     <MapPin size={16} className="text-brand-400" />
                   </div>
@@ -72,11 +72,11 @@ export function ContactSection() {
             </LiquidGlassCard>
 
             {/* Social links */}
-            <LiquidGlassCard className="p-5 md:p-8" glowColor="hsl(var(--brand-400) / 0.12)">
+            <LiquidGlassCard className="p-5 md:p-8 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.12)">
               <h3 className="text-sm md:text-lg font-semibold text-foreground mb-3 md:mb-4">
                 Follow Me
               </h3>
-              <div className="flex gap-2 md:gap-3">
+              <div className="flex justify-center sm:justify-start gap-2 md:gap-3">
                 {[
                   { icon: Github, href: 'https://github.com/sparsh', label: 'GitHub' },
                   { icon: Linkedin, href: 'https://linkedin.com/in/sparsh', label: 'LinkedIn' },

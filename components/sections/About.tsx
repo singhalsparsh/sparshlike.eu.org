@@ -54,7 +54,7 @@ export function About() {
           {/* Bio card - spans full width */}
           <LiquidGlassCard className="p-5 md:p-8 md:col-span-2" interactive glowColor="hsl(var(--brand-400) / 0.12)">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
-              <div>
+              <div className="text-center sm:text-left">
                 <h3 className="text-base md:text-xl font-semibold text-foreground mb-3 md:mb-4">
                   Building the Future, One Line of Code at a Time
                 </h3>
@@ -69,7 +69,7 @@ export function About() {
                   contributing to open source, or mentoring aspiring developers.
                 </p>
               </div>
-              <div className="glass-strong rounded-xl p-4 md:p-6">
+              <div className="glass-strong rounded-xl p-4 md:p-6 text-center sm:text-left">
                 <div className="text-3xl md:text-5xl font-bold text-gradient mb-2">5+</div>
                 <div className="text-xs md:text-sm text-foreground/60">Years of Experience</div>
                 <div className="hairline my-3 md:my-4" />
@@ -87,8 +87,8 @@ export function About() {
 
           {/* Highlight cards */}
           {highlights.map((item) => (
-            <LiquidGlassCard key={item.label} className="p-4 md:p-6" interactive glowColor="hsl(var(--brand-400) / 0.1)">
-              <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+            <LiquidGlassCard key={item.label} className="p-4 md:p-6 text-center sm:text-left" interactive glowColor="hsl(var(--brand-400) / 0.1)">
+              <div className="flex items-center justify-center sm:justify-start gap-2 md:gap-3 mb-2 md:mb-3">
                 <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-lg bg-brand-500/10">
                   <item.icon size={16} className="text-brand-400" />
                 </div>

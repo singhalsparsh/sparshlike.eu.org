@@ -65,12 +65,12 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <LiquidGlassCard
               key={item.name}
-              className="p-5 md:p-6 flex flex-col"
+              className="p-5 md:p-6 flex flex-col text-center sm:text-left"
               interactive
               glowColor="hsl(var(--brand-400) / 0.1)"
             >
               {/* Quote icon */}
-              <div className="mb-3 md:mb-4">
+              <div className="mb-3 md:mb-4 flex justify-center sm:justify-start">
                 <Quote size={18} className="text-brand-400/40" />
               </div>
 
@@ -80,7 +80,7 @@ export function Testimonials() {
               </blockquote>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-3 md:pt-4 border-t border-foreground/5">
+              <div className="flex items-center justify-center sm:justify-start gap-3 pt-3 md:pt-4 border-t border-foreground/5">
                 <div
                   className={`h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-[10px] md:text-xs font-bold text-white shrink-0`}
                 >

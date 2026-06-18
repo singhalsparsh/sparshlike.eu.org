@@ -439,7 +439,7 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
     } catch {}
   }, [currentTrack]);
 
-  // ── Poll current time ──
+  // ── Poll current time (150ms for smooth lyrics sync) ──
   useEffect(() => {
     if (!currentTrack) return;
     const interval = setInterval(() => {
@@ -452,7 +452,7 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
           }
         }
       } catch {}
-    }, 500);
+    }, 150);
     return () => clearInterval(interval);
   }, [currentTrack]);
 

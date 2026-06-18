@@ -18,7 +18,6 @@ const CommandPalette = dynamic(() => import('@/components/ui/command-palette').t
 const ContextMenu = dynamic(() => import('@/components/ui/context-menu').then((m) => m.ContextMenu));
 const ConsoleWelcome = dynamic(() => import('@/components/ui/console-welcome').then((m) => m.ConsoleWelcome));
 const ScrollToTop = dynamic(() => import('@/components/ui/scroll-to-top').then((m) => m.ScrollToTop));
-const ErrorBoundary = dynamic(() => import('@/components/ui/error-boundary').then((m) => m.ErrorBoundary));
 const MusicPlayer = dynamic(() => import('@/components/music').then((m) => m.MusicPlayer));
 
 const inter = Inter({
@@ -88,9 +87,7 @@ export default function RootLayout({
               <ContextMenu />
               <ConsoleWelcome />
               <CommandPalette />
-              <ErrorBoundary>
-                <MusicPlayer />
-              </ErrorBoundary>
+              <MusicPlayer />
             </MusicPlayerProvider>
           </ToastProvider>
         </ThemeProvider>

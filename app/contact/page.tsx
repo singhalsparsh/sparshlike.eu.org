@@ -70,36 +70,36 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8">
             {/* Left Sidebar - Contact Info */}
             <div className="lg:col-span-2 space-y-4 md:space-y-6">
-              <LiquidGlassCard className="p-5 md:p-8" glowColor="hsl(var(--brand-400) / 0.12)">
+              <LiquidGlassCard className="p-5 md:p-8 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.12)">
                 <h3 className="text-base md:text-lg font-semibold text-foreground mb-5">
                   Contact Information
                 </h3>
                 <div className="space-y-5">
-                  <div className="flex items-center gap-3 md:gap-4">
+                  <div className="flex items-center justify-center sm:justify-start gap-3 md:gap-4">
                     <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand-500/15 shrink-0">
                       <Mail size={16} className="text-brand-400" />
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 text-center sm:text-left">
                       <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Email</div>
                       <a href="mailto:hello@aurasparsh.dev" className="text-xs md:text-sm text-foreground/80 hover:text-brand-300 transition-colors truncate block">
                         hello@aurasparsh.dev
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 md:gap-4">
+                  <div className="flex items-center justify-center sm:justify-start gap-3 md:gap-4">
                     <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand-500/15 shrink-0">
                       <MapPin size={16} className="text-brand-400" />
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 text-center sm:text-left">
                       <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Location</div>
                       <div className="text-xs md:text-sm text-foreground/80">Remote / Worldwide</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 md:gap-4">
+                  <div className="flex items-center justify-center sm:justify-start gap-3 md:gap-4">
                     <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand-500/15 shrink-0">
                       <Clock size={16} className="text-brand-400" />
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 text-center sm:text-left">
                       <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Response Time</div>
                       <div className="text-xs md:text-sm text-foreground/80">Within 24 hours</div>
                     </div>
@@ -108,8 +108,8 @@ export default function ContactPage() {
               </LiquidGlassCard>
 
               {/* Social Links */}
-              <LiquidGlassCard className="p-5 md:p-8" glowColor="hsl(var(--brand-400) / 0.1)">
-                <h3 className="text-base md:text-lg font-semibold text-foreground mb-5 flex items-center gap-2">
+              <LiquidGlassCard className="p-5 md:p-8 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.1)">
+                <h3 className="text-base md:text-lg font-semibold text-foreground mb-5 flex items-center justify-center sm:justify-start gap-2">
                   <span className="w-1 h-5 rounded-full bg-brand-400" />
                   Find Me Online
                 </h3>
@@ -147,7 +147,7 @@ export default function ContactPage() {
               </LiquidGlassCard>
 
               {/* Office Hours */}
-              <LiquidGlassCard className="p-5 md:p-8" glowColor="hsl(var(--brand-400) / 0.08)">
+              <LiquidGlassCard className="p-5 md:p-8 text-center sm:text-left" glowColor="hsl(var(--brand-400) / 0.08)">
                 <h3 className="text-sm md:text-base font-semibold text-foreground mb-3">
                   Office Hours
                 </h3>

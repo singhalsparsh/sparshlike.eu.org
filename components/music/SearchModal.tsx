@@ -202,17 +202,21 @@ export function SearchModal() {
           'max-h-[70vh] sm:max-h-[75vh]',
           'rounded-2xl overflow-hidden',
           'flex flex-col',
-          'bg-white/90 dark:bg-[#0a0e1a]/90 backdrop-blur-[32px] saturate-[2]',
+          'bg-white/90 dark:bg-[#0a0e1a]/85 backdrop-blur-[32px] saturate-[2]',
           'border border-brand-400/20',
-          'shadow-[0_24px_80px_rgba(0,0,0,0.5),0_0_80px_hsl(var(--brand-400)/0.08)]',
+          'shadow-[0_24px_80px_rgba(0,0,0,0.5),0_0_80px_hsl(var(--brand-400)/0.08),0_1px_0_hsl(var(--brand-400)/0.06)_inset]',
           'animate-in fade-in zoom-in-90 duration-300',
         )}
       >
-        {/* Colour scheme overlay */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-brand-400/[0.04] via-transparent to-transparent" />
+        {/* Liquid glass sheen overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 dark:from-white/[0.04] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-400/[0.04] via-transparent to-brand-300/[0.04]" />
+          <div className="absolute top-0 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-white/20 dark:via-white/15 to-transparent" />
+        </div>
 
         {/* Header with search input */}
-        <div className="shrink-0 p-3 sm:p-4 border-b border-black/10 dark:border-white/[0.06]">
+        <div className="relative z-10 shrink-0 p-3 sm:p-4 border-b border-black/10 dark:border-white/[0.06]">
           <div className="flex items-center gap-2.5">
             <div className="relative flex-1">
               <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
@@ -224,7 +228,8 @@ export function SearchModal() {
                 onChange={handleChange}
                 className={cn(
                   'w-full pl-9 pr-8 py-2.5 rounded-xl text-sm',
-                  'bg-black/10 dark:bg-white/[0.12] border border-brand-400/20 dark:border-brand-400/20',
+                  'bg-black/10 dark:bg-white/[0.12] backdrop-blur-sm',
+                  'border border-brand-400/20 dark:border-brand-400/20',
                   'text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400',
                   'focus:outline-none focus:border-brand-400/50 focus:ring-[2px] focus:ring-brand-400/25',
                   'transition-all'
@@ -369,11 +374,11 @@ export function SearchModal() {
                         {tracks.map((track) => {
                           const isCurrent = currentTrack?.id === track.id;
                           return (
-                            <button
+                            <div
                               key={track.id}
                               onClick={() => handlePlay(track)}
                               className={cn(
-                                'w-full flex items-center gap-3 px-3 py-2 transition-all text-left group',
+                                'w-full flex items-center gap-3 px-3 py-2 transition-all text-left group cursor-pointer',
                                 isCurrent
                                   ? 'bg-brand-400/10'
                                   : 'hover:bg-black/5 dark:hover:bg-white/[0.04]'
@@ -427,19 +432,27 @@ export function SearchModal() {
                                 {formatTime(track.duration)}
                               </span>
 
-                              {/* Add to queue */}
-                              <button
+                              {/* Add to queue - FIXED: Changed from button to span */}
+                              <span
                                 onClick={(e) => handleAddToQueue(e, track)}
                                 className={cn(
-                                  'shrink-0 flex items-center justify-center w-7 h-7 rounded-lg transition-all',
+                                  'shrink-0 flex items-center justify-center w-7 h-7 rounded-lg transition-all cursor-pointer',
                                   'text-gray-500 dark:text-gray-400 hover:text-brand-500 dark:hover:text-brand-300 hover:bg-brand-400/10',
                                   'opacity-0 group-hover:opacity-100',
                                 )}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleAddToQueue(e as unknown as React.MouseEvent, track);
+                                  }
+                                }}
                                 title="Add to queue"
                               >
                                 <Plus size={13} />
-                              </button>
-                            </button>
+                              </span>
+                            </div>
                           );
                         })}
                       </div>
@@ -452,7 +465,7 @@ export function SearchModal() {
         </div>
 
         {/* Footer */}
-        <div className="shrink-0 px-4 py-2.5 border-t border-black/10 dark:border-white/[0.06] flex items-center justify-between">
+        <div className="relative z-10 shrink-0 px-4 py-2.5 border-t border-black/10 dark:border-white/[0.06] flex items-center justify-between">
           <span className="text-[10px] text-gray-500 dark:text-gray-500">
             {searchResults.length > 0
               ? `${totalResults} ${totalResults === 1 ? 'result' : 'results'} · ${artistCount} ${artistCount === 1 ? 'artist' : 'artists'}`

@@ -128,14 +128,14 @@ export function Projects() {
                 </div>
 
                 {/* Card content */}
-                <div className="p-4 md:p-6">
+                <div className="p-4 md:p-6 text-center sm:text-left">
                   <h3 className="text-base md:text-lg font-semibold text-foreground mb-2 group-hover:text-brand-300 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-xs md:text-sm text-foreground/50 mb-3 md:mb-4 line-clamp-2 md:line-clamp-3 leading-relaxed">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 md:gap-2">
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 md:gap-2">
                     {project.tech.slice(0, 3).map((t) => (
                       <span
                         key={t}
