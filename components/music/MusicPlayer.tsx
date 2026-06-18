@@ -783,10 +783,10 @@ export function MusicPlayer() {
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-foreground">Keyboard Shortcuts</h3>
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Keyboard Shortcuts</h3>
                     <button
                       onClick={() => setShowShortcuts(false)}
-                      className="flex items-center justify-center w-6 h-6 rounded-full text-foreground/40 hover:text-foreground hover:bg-black/5 dark:hover:bg-white/10 transition-all text-xs"
+                      className="flex items-center justify-center w-6 h-6 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-all text-xs"
                     >
                       ✕
                     </button>
@@ -806,17 +806,17 @@ export function MusicPlayer() {
                       { keys: 'Escape', action: 'Close fullscreen / menus' },
                     ].map(({ keys, action }) => (
                       <div key={keys} className="flex items-center justify-between gap-4">
-                        <span className="text-xs text-foreground/60">{action}</span>
-                        <kbd className="shrink-0 text-[11px] font-mono font-semibold px-2 py-1 rounded-lg bg-foreground/5 text-foreground/70 border border-foreground/10 whitespace-nowrap">
+                        <span className="text-xs text-gray-600 dark:text-gray-400">{action}</span>
+                        <kbd className="shrink-0 text-[11px] font-mono font-semibold px-2 py-1 rounded-lg bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/20 whitespace-nowrap">
                           {keys}
                         </kbd>
                       </div>
                     ))}
                   </div>
 
-                  <p className="text-[10px] text-foreground/30 text-center mt-3 leading-relaxed">
+                  <p className="text-[10px] text-gray-400 dark:text-gray-500 text-center mt-3 leading-relaxed">
                     Shortcuts disabled when typing in input fields.<br />
-                    Alt+shortcuts may be captured by your browser — use <kbd className="text-[10px] font-mono font-semibold px-1 rounded bg-foreground/10 text-foreground/50">/</kbd> for search instead.
+                    Alt+shortcuts may be captured by your browser — use <kbd className="text-[10px] font-mono font-semibold px-1 rounded bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400">/</kbd> for search instead.
                   </p>
                 </div>
               </div>
