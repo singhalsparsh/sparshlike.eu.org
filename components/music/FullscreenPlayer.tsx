@@ -387,19 +387,55 @@ export function FullscreenPlayer() {
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  // Loop a random segment of the video as background (40-70s, from varying positions)
-  const videoLoopStart = useMemo(() => {
-    if (duration <= 0) return 60;
-    if (duration < 90) return Math.floor(duration * 0.15);
-    const seed = (displayVideoId || '').split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-    const segLen = Math.min(40 + (seed % 31), Math.floor(duration * 0.35));
-    const maxStart = Math.max(10, duration - segLen - 10);
-    const start = 10 + (seed % Math.max(1, maxStart - 9));
-    return Math.floor(start);
+  // ── Video background: cycle through short segments (8s each) from different sections ──
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const SEGMENT_MS = 8000;
+  const [seekIdx, setSeekIdx] = useState(0);
+
+  // Generate seek positions spread across the video (skip intro/outro)
+  const seekPositions = useMemo(() => {
+    if (!displayVideoId || duration <= 0) return [60];
+    const count = 8;
+    const startBound = Math.max(15, duration * 0.15);
+    const endBound = duration * 0.88;
+    const range = endBound - startBound;
+    if (range <= 20) return [Math.floor(startBound)];
+    const positions: number[] = [];
+    const step = range / (count + 1);
+    for (let i = 0; i < count; i++) {
+      positions.push(Math.floor(startBound + step * (i + 1)));
+    }
+    return positions;
   }, [displayVideoId, duration]);
-  const videoLoopEnd = Math.min(videoLoopStart + 55, duration > 0 ? duration - 5 : 120);
+
+  // Reset position index when video changes
+  useEffect(() => { setSeekIdx(0); }, [displayVideoId]);
+
+  // Cycle through positions every SEGMENT_MS
+  useEffect(() => {
+    if (!showVideo || !displayVideoId || seekPositions.length <= 1) return;
+    const interval = setInterval(() => {
+      setSeekIdx((prev) => (prev + 1) % seekPositions.length);
+    }, SEGMENT_MS);
+    return () => clearInterval(interval);
+  }, [showVideo, displayVideoId, seekPositions.length]);
+
+  // Seek to current position via YouTube postMessage API (no iframe reload / flicker)
+  useEffect(() => {
+    if (!showVideo || !displayVideoId || !iframeRef.current || seekPositions.length === 0) return;
+    const target = seekPositions[seekIdx];
+    if (target == null) return;
+    try {
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func: 'seekTo', args: [target, true] }),
+        '*'
+      );
+    } catch { /* ignore */ }
+  }, [showVideo, seekIdx, displayVideoId, seekPositions]);
+
+  const firstPos = seekPositions[0] ?? 60;
   const videoSrc = showVideo && displayVideoId
-    ? `https://www.youtube.com/embed/${displayVideoId}?autoplay=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&playsinline=1&mute=1&modestbranding=1&cc_load_policy=0&fs=0&start=${videoLoopStart}&end=${videoLoopEnd}&playlist=${displayVideoId}`
+    ? `https://www.youtube.com/embed/${displayVideoId}?autoplay=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&playsinline=1&mute=1&modestbranding=1&cc_load_policy=0&fs=0&enablejsapi=1&start=${firstPos}`
     : '';
 
   if (!isFullscreen) return null;
@@ -418,21 +454,24 @@ export function FullscreenPlayer() {
       {/* ── Music Video Background (blurred) ── */}
       {showVideo && displayVideoId && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Iframe scaled up & shifted so YouTube bottom chrome (logo, progress bar) clips outside */}
-          <div className="absolute inset-0 w-full h-full">
-            <iframe
-              src={videoSrc}
-              className="absolute top-[8px] left-1/2 -translate-x-1/2"
-              style={{
-                width: '195%',
-                height: '195%',
-                maxWidth: 'none',
-                filter: 'blur(12px) brightness(0.45) saturate(0.85)',
-              }}
-              allow="autoplay; encrypted-media"
-              title=""
-            />
-          </div>
+          {/* Cover-technique iframe: scales to keep video center visible at any aspect ratio */}
+          <iframe
+            ref={iframeRef}
+            src={videoSrc}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '100vw',
+              height: '56.25vw',
+              minWidth: '177.78vh',
+              minHeight: '100vh',
+              filter: 'blur(10px) brightness(0.45) saturate(0.85)',
+            }}
+            allow="autoplay; encrypted-media"
+            title=""
+          />
           {/* Dark gradient overlay to further obscure YouTube UI remnants */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
         </div>
@@ -513,7 +552,7 @@ export function FullscreenPlayer() {
           </div>
 
           {/* Body */}
-          <div className="flex-1 flex items-center justify-center overflow-hidden py-2 sm:py-4">
+          <div className="flex-1 flex items-center justify-center py-1 sm:py-4">
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-16 w-full max-w-5xl">
               {/* Left: Album art */}
               <div className="relative shrink-0">
@@ -583,7 +622,7 @@ export function FullscreenPlayer() {
                 <div className="space-y-1.5">
                   <div
                     ref={progressRef}
-                    className="w-full h-1 bg-white/15 rounded-full cursor-pointer group relative"
+                    className="w-full h-2 sm:h-1 bg-white/15 rounded-full cursor-pointer group relative"
                     onMouseDown={handleProgressMouseDown}
                     onMouseMove={(e) => {
                       if (!progressRef.current || !duration) return;
