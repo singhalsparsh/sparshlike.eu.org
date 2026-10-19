@@ -52,10 +52,10 @@ export function ContactSection() {
                   <div className="min-w-0">
                     <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Email</div>
                     <a
-                      href="mailto:hello@aurasparsh.dev"
+                      href="mailto:hello@sparshlike.eu.org"
                       className="text-xs md:text-base text-foreground/80 hover:text-brand-300 transition-colors truncate block"
                     >
-                      hello@aurasparsh.dev
+                      hello@sparshlike.eu.org
                     </a>
                   </div>
                 </div>
@@ -65,7 +65,7 @@ export function ContactSection() {
                   </div>
                   <div className="min-w-0">
                     <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Location</div>
-                    <div className="text-xs md:text-base text-foreground/80">Remote / Worldwide</div>
+                    <div className="text-xs md:text-base text-foreground/80">Ghaziabad / Delhi NCR, India</div>
                   </div>
                 </div>
               </div>
@@ -78,9 +78,8 @@ export function ContactSection() {
               </h3>
               <div className="flex justify-center sm:justify-start gap-2 md:gap-3">
                 {[
-                  { icon: Github, href: 'https://github.com/sparsh', label: 'GitHub' },
-                  { icon: Linkedin, href: 'https://linkedin.com/in/sparsh', label: 'LinkedIn' },
-                  { icon: Twitter, href: 'https://twitter.com/sparsh', label: 'Twitter' },
+                  { icon: Github, href: 'https://github.com/singhalsparsh', label: 'GitHub' },
+                  { icon: Linkedin, href: 'https://linkedin.com/in/singhalsparsh', label: 'LinkedIn' },
                 ].map((social) => (
                   <a
                     key={social.label}

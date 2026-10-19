@@ -67,8 +67,9 @@ const STORAGE_KEYS = {
 
 /* ─── Piped API (free YouTube search, no API key) ─── */
 export const PIPED_INSTANCES = [
-  'https://pipedapi.kavin.rocks',
   'https://api.piped.private.coffee',
+  'https://pipedapi.in.projectsegfau.lt',
+  'https://pipedapi.kavin.rocks',
   'https://pipedapi.pufe.org',
 ];
 
@@ -96,7 +97,7 @@ function pipedItemToTrack(item: any): Track {
     id: videoId,
     title,
     artist: item.uploaderName || item.uploader || 'Unknown',
-    albumArt: upgradeThumbnail(item.thumbnail || item.thumbnailUrl || ''),
+    albumArt: getAlbumArtUrl(item.thumbnail || item.thumbnailUrl || '', videoId),
     videoId,
     duration: item.duration || 0,
     uploader: item.uploaderName || item.uploader || undefined,
@@ -104,32 +105,52 @@ function pipedItemToTrack(item: any): Track {
   };
 }
 
-/* ─── Thumbnail quality upgrade ─── */
-const THUMBNAIL_QUALITIES = ['maxresdefault', 'sddefault', 'hqdefault', 'mqdefault', 'default'];
+/* ─── Robust album art & thumbnail fallback ─── */
+const THUMBNAIL_QUALITIES = ['maxresdefault', 'hqdefault', 'mqdefault', 'default'];
 
-function upgradeThumbnail(url: string): string {
-  if (!url) return '';
-  // Replace any known quality with maxresdefault
+export function getAlbumArtUrl(rawUrl: string, videoId?: string): string {
+  // If we have a video ID, i.ytimg.com is much more reliable and faster than proxied piped urls
+  if (videoId) {
+    return `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+  }
+  if (!rawUrl) return '';
+  // Check if rawUrl already contains a videoId pattern
+  const vidMatch = rawUrl.match(/\/vi\/([a-zA-Z0-9_-]{11})\//);
+  if (vidMatch?.[1]) {
+    return `https://i.ytimg.com/vi/${vidMatch[1]}/maxresdefault.jpg`;
+  }
   for (const q of THUMBNAIL_QUALITIES) {
-    if (url.includes(q + '.jpg')) {
-      return url.replace(q, 'maxresdefault');
+    if (rawUrl.includes(q + '.jpg')) {
+      return rawUrl.replace(q, 'maxresdefault');
     }
   }
-  return url;
+  return rawUrl;
 }
 
-/** Progressive fallback for img onError: tries maxresdefault → sddefault → ... → hides */
+/** Progressive fallback for img onError: tries maxresdefault → hqdefault → mqdefault → default */
 export function handleThumbnailError(e: React.SyntheticEvent<HTMLImageElement>) {
   const img = e.target as HTMLImageElement;
   const src = img.src;
-  if (!src) { img.style.display = 'none'; return; }
+  if (!src) return;
+
+  // Try extracting video ID if present
+  const vidMatch = src.match(/\/vi\/([a-zA-Z0-9_-]{11})\//);
+  if (vidMatch?.[1]) {
+    const vid = vidMatch[1];
+    for (let i = 0; i < THUMBNAIL_QUALITIES.length - 1; i++) {
+      if (src.includes(THUMBNAIL_QUALITIES[i])) {
+        img.src = `https://i.ytimg.com/vi/${vid}/${THUMBNAIL_QUALITIES[i + 1]}.jpg`;
+        return;
+      }
+    }
+  }
+
   for (let i = 0; i < THUMBNAIL_QUALITIES.length - 1; i++) {
     if (src.includes(THUMBNAIL_QUALITIES[i])) {
       img.src = src.replace(THUMBNAIL_QUALITIES[i], THUMBNAIL_QUALITIES[i + 1]);
       return;
     }
   }
-  img.style.display = 'none';
 }
 
 /* ─── Extract vibrant accent hue from album art ─── */
@@ -393,6 +414,9 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
         try {
           const parsed = JSON.parse(savedTrack);
           if (parsed && parsed.videoId) {
+            if (!parsed.albumArt || parsed.albumArt.includes('piped')) {
+              parsed.albumArt = getAlbumArtUrl(parsed.albumArt || '', parsed.videoId);
+            }
             setCurrentTrack(parsed);
             currentTrackRef.current = parsed;
             setDuration(parsed.duration || 0);

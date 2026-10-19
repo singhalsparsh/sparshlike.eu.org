@@ -318,8 +318,8 @@ export function Nav() {
             {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
-          {/* Book a Call */}
-          <Link href="/contact" className="ml-2 lg:ml-3">
+          {/* Book a Call / Hire Me */}
+          <a href="mailto:hello@sparshlike.eu.org" className="ml-2 lg:ml-3">
             <span
               className={cn(
                 'inline-flex items-center px-5 lg:px-6 py-2 rounded-full font-semibold whitespace-nowrap',
@@ -333,7 +333,7 @@ export function Nav() {
             >
               Hire Me
             </span>
-          </Link>
+          </a>
         </div>
 
         {/* Mobile controls */}
@@ -403,7 +403,7 @@ export function Nav() {
 
             <div className="h-px bg-gray-200 dark:bg-white/10 my-2" />
 
-            <Link href="/contact" onClick={() => setMobileOpen(false)} className="px-4">
+            <a href="mailto:hello@sparshlike.eu.org" onClick={() => setMobileOpen(false)} className="px-4">
               <span
                 className={cn(
                   'inline-flex items-center justify-center w-full px-6 py-3.5 rounded-full text-base font-semibold whitespace-nowrap',
@@ -415,7 +415,7 @@ export function Nav() {
               >
                 Hire Me
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       )}

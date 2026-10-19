@@ -44,8 +44,8 @@ export default function HomePage() {
               <span className="text-gradient"> Blog</span>
             </h2>
             <p className="max-w-2xl mx-auto text-foreground/60 text-sm md:text-lg leading-relaxed px-4">
-              Thoughts, tutorials, and insights on web development, 3D graphics,
-              and building premium digital products.
+              Technical breakdowns on generative AI, algorithm optimization from 200+ LeetCode problems,
+              and native Linux engineering.
             </p>
           </div>
 
@@ -111,20 +111,19 @@ export default function HomePage() {
         <div className="container mx-auto max-w-4xl relative z-10 text-center">
           <h2 className="display-2 mb-4">
             Let&apos;s Build Something
-            <span className="text-gradient block mt-1">Amazing Together</span>
+            <span className="text-gradient block mt-1">Intelligent Together</span>
           </h2>
           <p className="text-foreground/60 text-sm md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed px-4">
-            I am always open to discussing new projects, creative ideas, or opportunities
-            to be part of your vision. Whether you need a full application, a 3D experience,
-            or just want to brainstorm, I&apos;d love to hear from you.
+            Open to Collaborations &amp; Engineering Challenges. Whether you are exploring generative AI integrations,
+            systems architecture, or high-performance software, I would love to connect.
           </p>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            <Link href="/contact">
+            <a href="mailto:hello@sparshlike.eu.org">
               <GlassButton variant="gradient" size="lg">
                 Get in Touch
                 <ArrowRight size={16} />
               </GlassButton>
-            </Link>
+            </a>
             <Link href="/projects">
               <GlassButton variant="primary" size="lg">
                 View My Work

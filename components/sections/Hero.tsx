@@ -65,17 +65,17 @@ export function Hero() {
             <div className="flex items-center gap-2 mb-4 md:mb-6">
               <Sparkles size={14} className="text-brand-400 shrink-0" />
               <span className="text-xs md:text-sm font-medium text-brand-400 tracking-wider uppercase">
-                Full Stack Developer
+                Systems &amp; AI Developer • Undergraduate
               </span>
             </div>
 
             <h1 ref={titleRef} className="display-1 mb-4 md:mb-6">
-              Crafting
+              Building
               <span className="text-gradient block mt-1 md:mt-2">
-                Digital Experiences
+                Intelligent Applications
               </span>
               <span className="block mt-1 md:mt-0">
-                with Code &amp; Creativity
+                &amp; Systems with Modern Architecture
               </span>
             </h1>
 
@@ -83,9 +83,10 @@ export function Hero() {
               ref={subtitleRef}
               className="max-w-xl text-sm md:text-base lg:text-lg text-foreground/60 leading-relaxed mb-6 md:mb-8"
             >
-              I build premium web applications with cutting-edge technology.
-              From interactive 3D experiences to robust backend systems,
-              I turn complex problems into elegant solutions.
+              First-year undergraduate student pursuing B.Tech in Computer Science and Engineering
+              with a specialization in Artificial Intelligence at KIET Deemed to be University.
+              I focus on core problem-solving, building AI-integrated web applications, and low-level
+              development—supported by intensive Data Structures &amp; Algorithms practice in C++ and Python.
             </p>
 
             <div ref={ctaRef} className="flex flex-wrap gap-3 md:gap-4">
@@ -95,11 +96,11 @@ export function Hero() {
                   <ArrowRight size={14} />
                 </GlassButton>
               </Link>
-              <Link href="/contact">
+              <a href="mailto:hello@sparshlike.eu.org">
                 <GlassButton variant="primary" size="md" className="text-xs md:text-sm">
                   Get in Touch
                 </GlassButton>
-              </Link>
+              </a>
             </div>
 
             {/* Stats row */}
@@ -109,21 +110,21 @@ export function Hero() {
             >
               <div className="flex-1 sm:flex-initial">
                 <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
-                  <AnimatedCounter target={5} suffix="+" />
+                  <AnimatedCounter target={200} suffix="+" />
                 </div>
-                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Years Exp.</div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Problems Solved</div>
               </div>
               <div className="flex-1 sm:flex-initial">
                 <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
-                  <AnimatedCounter target={50} suffix="+" />
+                  <AnimatedCounter target={100} suffix="%" />
                 </div>
-                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Projects</div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Linux-Native</div>
               </div>
               <div className="flex-1 sm:flex-initial">
                 <div className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">
-                  <AnimatedCounter target={30} suffix="+" />
+                  2026-30
                 </div>
-                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Clients</div>
+                <div className="text-[11px] sm:text-xs md:text-sm text-foreground/40 whitespace-nowrap">Academic Session</div>
               </div>
             </div>
           </div>
@@ -134,24 +135,20 @@ export function Hero() {
               <div className="flex items-center gap-2 mb-3 md:mb-4">
                 <Code2 size={14} className="text-brand-400 shrink-0" />
                 <span className="text-[10px] md:text-xs text-foreground/50 font-mono">
-                  developer.tsx
+                  engineer.ts
                 </span>
               </div>
               <pre className="font-mono text-[10px] md:text-xs text-foreground/70 leading-relaxed whitespace-pre-wrap">
                 <code>{`const developer = {
   name: "Sparsh Singhal",
-  role: "Full Stack Developer",
-  stack: {
-    frontend: ["React", "Next.js", "Three.js"],
-    backend: ["Node.js", "Python", "Go"],
-    database: ["PostgreSQL", "MongoDB"],
-    cloud: ["AWS", "Vercel", "Netlify"],
-  },
-  currentFocus: "Building immersive
-    web experiences with 3D
-    & interactive animations.",
-  motto: "Code is poetry
-    in motion.",
+  role: "Systems & AI Developer",
+  education: "B.Tech CSE (AI) @ KIET",
+  languages: ["C++", "Python", "TS", "C"],
+  ai_ml: ["Generative AI", "PyTorch", "APIs"],
+  environment: "Ubuntu 26.04 (Linux-Native)",
+  problemSolving: "200+ LeetCode Solves",
+  status: "Open to Collaborations &
+    Engineering Challenges",
 };`}</code>
               </pre>
             </div>

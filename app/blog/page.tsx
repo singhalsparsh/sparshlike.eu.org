@@ -60,11 +60,11 @@ export default function BlogPage() {
             </span>
             <h1 className="display-1 mb-6">
               Latest Thoughts
-              <span className="text-gradient block mt-1">&amp; Tutorials</span>
+              <span className="text-gradient block mt-1">&amp; Engineering Notes</span>
             </h1>
             <p className="text-base md:text-lg text-foreground/60 leading-relaxed">
-              Insights, tutorials, and deep dives into web development, 3D graphics,
-              and building premium digital products.
+              Technical breakdowns, algorithmic problem solving patterns, generative AI interfaces,
+              and native Linux development workflows.
             </p>
 
             {/* Search Bar */}

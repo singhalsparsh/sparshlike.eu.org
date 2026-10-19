@@ -12,20 +12,20 @@ const STYLES = {
 
 const ASCII = `
    ╔══════════════════════════════════════════╗
-   ║     ✦  AURA PORTFOLIO  ✦               ║
-   ║     Built with Next.js + Three.js       ║
+   ║     ✦  SPARSH SINGHAL PORTFOLIO  ✦       ║
+   ║     Built with Next.js + Three.js        ║
    ╚══════════════════════════════════════════╝
 `;
 
 export function ConsoleWelcome() {
   useEffect(() => {
     console.log(`%c${ASCII}`, 'color: #6366f1; font-weight: bold;');
-    console.log('%c🚀 Welcome to AURA Portfolio!', STYLES.title);
-    console.log('%c👨‍💻 Built by Sparsh Singhal', STYLES.subtitle);
-    console.log('%c⚡ Tech Stack: Next.js 14 · Three.js · GSAP · Tailwind CSS', STYLES.muted);
-    console.log('%c🔗 %chttps://aurasparsh.dev', STYLES.link, STYLES.link);
-    console.log('%c📧 %chello@aurasparsh.dev', STYLES.link, STYLES.link);
-    console.log('%c💜 Enjoy exploring!', STYLES.brand);
+    console.log('%c🚀 Welcome to Sparsh Singhal Portfolio!', STYLES.title);
+    console.log('%c👨‍💻 Systems & AI Developer • KIET Undergrad', STYLES.subtitle);
+    console.log('%c⚡ Tech Stack: C++ · Python · Generative AI · React · Next.js · Linux (Ubuntu 26.04)', STYLES.muted);
+    console.log('%c🔗 %chttps://sparshlike.eu.org', STYLES.link, STYLES.link);
+    console.log('%c📧 %chello@sparshlike.eu.org', STYLES.link, STYLES.link);
+    console.log('%c💜 Open to Collaborations & Engineering Challenges!', STYLES.brand);
   }, []);
 
   return null;

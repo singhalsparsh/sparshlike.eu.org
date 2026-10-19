@@ -12,28 +12,28 @@ import { GlassButton } from '@/components/ui/glass-button';
 
 const skillAreas = [
   {
-    title: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
+    title: 'Languages',
+    skills: ['C++', 'Python', 'JavaScript', 'TypeScript', 'C'],
     icon: Code2,
     color: 'from-emerald-500 to-teal-500',
   },
   {
-    title: 'Backend',
-    skills: ['Node.js', 'Python', 'Go', 'Express', 'GraphQL', 'PostgreSQL'],
+    title: 'AI / ML & Frameworks',
+    skills: ['Generative AI', 'PyTorch', 'Model Integration', 'REST APIs'],
     icon: Code2,
-    color: 'from-teal-500 to-cyan-500',
+    color: 'from-purple-500 to-pink-500',
   },
   {
-    title: 'Cloud & DevOps',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'Vercel', 'CI/CD', 'Netlify'],
+    title: 'Frontend & Web',
+    skills: ['React', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS'],
     icon: Code2,
     color: 'from-blue-500 to-indigo-500',
   },
   {
-    title: '3D & Animation',
-    skills: ['Three.js', 'GSAP', 'WebGL', 'Blender', 'Framer Motion', 'Lenis'],
+    title: 'Tools & Environments',
+    skills: ['Linux (Ubuntu 26.04)', 'Git', 'GitHub', 'VS Code'],
     icon: Code2,
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-teal-500 to-cyan-500',
   },
 ];
 
@@ -67,14 +67,15 @@ export default function AboutPage() {
               <span className="text-xs font-medium text-brand-400 tracking-wider uppercase">About Me</span>
             </div>
             <h1 className="display-1 mb-6">
-              Building the
-              <span className="text-gradient block mt-1">Future,</span>
-              <span className="block mt-1">One Line at a Time</span>
+              Building
+              <span className="text-gradient block mt-1">Intelligent Applications</span>
+              <span className="block mt-1">&amp; Systems with Modern Architecture</span>
             </h1>
             <p className="text-base md:text-lg text-foreground/60 leading-relaxed max-w-2xl">
-              I am a full-stack developer with 5+ years of experience crafting premium digital
-              experiences. My passion lies at the intersection of beautiful design and robust
-              engineering, creating applications that delight users and stand the test of time.
+              First-year undergraduate student pursuing B.Tech in Computer Science and Engineering
+              with a specialization in Artificial Intelligence at KIET Deemed to be University. I focus on core
+              problem-solving, building AI-integrated web applications, and low-level development—supported
+              by intensive Data Structures &amp; Algorithms practice in C++ and Python.
             </p>
           </div>
         </div>
@@ -92,32 +93,32 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-foreground/60 text-sm md:text-base leading-relaxed">
                 <p>
-                  My journey in software development began with curiosity and grew into a lifelong
-                  craft. I believe in writing code that is clean, maintainable, and delightful to use.
-                  Every project is an opportunity to push boundaries and create something remarkable.
+                  As an engineering undergraduate specializing in AI, I dive deeply into the mathematical
+                  underpinnings of machine learning architectures, system programming, and competitive
+                  algorithmic development.
                 </p>
                 <p>
-                  Over the past 5 years, I have worked with startups and established companies alike,
-                  delivering solutions that span the full stack — from interactive 3D web experiences
-                  to scalable backend systems handling millions of requests.
+                  My engineering workflow is 100% Linux-native on Ubuntu 26.04, providing a clean environment
+                  for low-level system design, deep learning workflows with PyTorch, and building production-ready
+                  full-stack web applications.
                 </p>
                 <p>
-                  When I am not coding, you will find me exploring new technologies, contributing to
-                  open source projects, or mentoring aspiring developers through community programs.
+                  Having solved 200+ challenges on LeetCode with the 50 Days Badge 2026, I approach engineering
+                  problems with rigorous attention to algorithmic efficiency and state complexity.
                 </p>
               </div>
               <div className="mt-6 flex justify-center sm:justify-start gap-3 md:gap-4 flex-wrap">
                 <div className="glass-strong rounded-xl p-3 md:p-4 text-center flex-1 min-w-[80px] md:min-w-[100px]">
-                  <div className="text-lg md:text-2xl font-bold text-gradient">5+</div>
-                  <div className="text-[10px] md:text-xs text-foreground/40 mt-1">Years Exp.</div>
+                  <div className="text-lg md:text-2xl font-bold text-gradient">200+</div>
+                  <div className="text-[10px] md:text-xs text-foreground/40 mt-1">LeetCode Solves</div>
                 </div>
                 <div className="glass-strong rounded-xl p-3 md:p-4 text-center flex-1 min-w-[80px] md:min-w-[100px]">
-                  <div className="text-lg md:text-2xl font-bold text-gradient">50+</div>
-                  <div className="text-[10px] md:text-xs text-foreground/40 mt-1">Projects</div>
+                  <div className="text-lg md:text-2xl font-bold text-gradient">100%</div>
+                  <div className="text-[10px] md:text-xs text-foreground/40 mt-1">Linux-Native</div>
                 </div>
                 <div className="glass-strong rounded-xl p-3 md:p-4 text-center flex-1 min-w-[80px] md:min-w-[100px]">
-                  <div className="text-lg md:text-2xl font-bold text-gradient">30+</div>
-                  <div className="text-[10px] md:text-xs text-foreground/40 mt-1">Clients</div>
+                  <div className="text-lg md:text-2xl font-bold text-gradient">2026-30</div>
+                  <div className="text-[10px] md:text-xs text-foreground/40 mt-1">Academic Session</div>
                 </div>
               </div>
             </div>
@@ -129,14 +130,11 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-2">{area.title}</h3>
                   <div className="flex flex-wrap justify-center sm:justify-start gap-1">
-                    {area.skills.slice(0, 3).map((s) => (
+                    {area.skills.map((s) => (
                       <span key={s} className="text-[10px] px-1.5 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20">
                         {s}
                       </span>
                     ))}
-                    {area.skills.length > 3 && (
-                      <span className="text-[10px] text-foreground/40">+{area.skills.length - 3}</span>
-                    )}
                   </div>
                 </LiquidGlassCard>
               ))}
@@ -269,12 +267,12 @@ export default function AboutPage() {
             I am always open to discussing new projects, creative ideas, or opportunities
             to be part of your vision.
           </p>
-          <Link href="/contact">
+          <a href="mailto:hello@sparshlike.eu.org">
             <GlassButton variant="gradient" size="lg">
               Get in Touch
               <ArrowRight size={14} />
             </GlassButton>
-          </Link>
+          </a>
         </div>
       </section>
     </main>

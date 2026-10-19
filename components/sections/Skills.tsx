@@ -4,40 +4,28 @@ import { DotPattern } from '@/components/ui/dot-pattern';
 
 const skillCategories = [
   {
-    category: 'Frontend',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Three.js', 'Tailwind CSS'],
-    years: '5+',
+    category: 'Languages',
+    technologies: ['C++', 'Python', 'JavaScript', 'TypeScript', 'C'],
+    years: 'Active',
+    growth: '95%',
+  },
+  {
+    category: 'AI / ML & Frameworks',
+    technologies: ['Generative AI', 'PyTorch', 'Model Integration', 'REST APIs'],
+    years: 'Active',
     growth: '90%',
   },
   {
-    category: 'Backend',
-    technologies: ['Node.js', 'Python', 'Go', 'Express', 'GraphQL'],
-    years: '4+',
-    growth: '85%',
+    category: 'Frontend & Web',
+    technologies: ['React', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS'],
+    years: 'Active',
+    growth: '92%',
   },
   {
-    category: 'Database',
-    technologies: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Supabase'],
-    years: '4+',
-    growth: '80%',
-  },
-  {
-    category: 'Cloud & DevOps',
-    technologies: ['AWS', 'Docker', 'Vercel', 'Netlify', 'CI/CD'],
-    years: '3+',
-    growth: '75%',
-  },
-  {
-    category: '3D & Animation',
-    technologies: ['Three.js', 'GSAP', 'Framer Motion', 'WebGL', 'Blender'],
-    years: '3+',
-    growth: '82%',
-  },
-  {
-    category: 'Tools & Workflow',
-    technologies: ['Git', 'Figma', 'VS Code', 'Jira', 'Notion'],
-    years: '5+',
-    growth: '95%',
+    category: 'Tools & Environments',
+    technologies: ['Linux (Ubuntu 26.04)', 'Git', 'GitHub', 'VS Code'],
+    years: '100% Native',
+    growth: '98%',
   },
 ];
 

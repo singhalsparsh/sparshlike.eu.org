@@ -87,7 +87,7 @@ export default function NotFoundPage() {
 
         {/* Subtle footer hint */}
         <p className="text-center mt-8 text-[11px] text-foreground/20 font-mono">
-          $ curl -I https://aurasparsh.dev{typeof window !== 'undefined' ? window.location.pathname : ''}
+          $ curl -I https://sparshlike.eu.org{typeof window !== 'undefined' ? window.location.pathname : ''}
           <br />
           &gt; HTTP/2 404 Not Found
         </p>

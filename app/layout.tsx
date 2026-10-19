@@ -35,29 +35,34 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Sparsh Singhal | Full Stack Developer & 3D Web Engineer',
+  title: 'Sparsh Singhal | Systems & AI Developer',
   description:
-    'Premium portfolio of Sparsh Singhal, a full-stack developer specializing in interactive 3D web experiences, liquid glass design, and cutting-edge web applications.',
+    'Personal portfolio and technical ecosystem of Sparsh Singhal — Computer Science & Artificial Intelligence Undergraduate, Systems & AI Developer.',
   keywords: [
-    'full stack developer',
-    '3D web',
-    'Three.js',
+    'Sparsh Singhal',
+    'AI Developer',
+    'Systems Developer',
+    'C++',
+    'Python',
     'Next.js',
+    'Generative AI',
     'portfolio',
-    'web developer',
   ],
+  metadataBase: new URL('https://sparshlike.eu.org'),
   openGraph: {
-    title: 'Sparsh Singhal | Full Stack Developer & 3D Web Engineer',
+    title: 'Sparsh Singhal | Computer Science & AI Undergraduate',
     description:
-      'Premium portfolio of Sparsh Singhal, a full-stack developer specializing in interactive 3D web experiences.',
+      'Building Intelligent Applications & Systems with Modern Architecture.',
+    url: 'https://sparshlike.eu.org',
+    siteName: 'Sparsh Singhal Portfolio',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sparsh Singhal | Full Stack Developer',
+    title: 'Sparsh Singhal | Systems & AI Developer',
     description:
-      'Premium portfolio of Sparsh Singhal — full-stack developer specializing in interactive 3D web experiences.',
+      'Building Intelligent Applications & Systems with Modern Architecture.',
   },
   robots: { index: true, follow: true },
 };

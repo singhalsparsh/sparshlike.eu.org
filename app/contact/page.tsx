@@ -81,8 +81,8 @@ export default function ContactPage() {
                     </div>
                     <div className="min-w-0 text-center sm:text-left">
                       <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Email</div>
-                      <a href="mailto:hello@aurasparsh.dev" className="text-xs md:text-sm text-foreground/80 hover:text-brand-300 transition-colors truncate block">
-                        hello@aurasparsh.dev
+                      <a href="mailto:hello@sparshlike.eu.org" className="text-xs md:text-sm text-foreground/80 hover:text-brand-300 transition-colors truncate block">
+                        hello@sparshlike.eu.org
                       </a>
                     </div>
                   </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     </div>
                     <div className="min-w-0 text-center sm:text-left">
                       <div className="text-[10px] md:text-xs text-foreground/40 font-medium">Location</div>
-                      <div className="text-xs md:text-sm text-foreground/80">Remote / Worldwide</div>
+                      <div className="text-xs md:text-sm text-foreground/80">Ghaziabad / Delhi NCR, India</div>
                     </div>
                   </div>
                   <div className="flex items-center justify-center sm:justify-start gap-3 md:gap-4">
@@ -115,10 +115,8 @@ export default function ContactPage() {
                 </h3>
                 <div className="grid grid-cols-1 gap-2.5">
                   {[
-                    { icon: Github, href: 'https://github.com/sparsh', label: 'GitHub', handle: '@sparsh', color: 'hover:border-[#333] hover:bg-[#333]/10' },
-                    { icon: Linkedin, href: 'https://linkedin.com/in/sparsh', label: 'LinkedIn', handle: '/in/sparsh', color: 'hover:border-[#0a66c2] hover:bg-[#0a66c2]/10' },
-                    { icon: Globe, href: 'https://x.com/sparsh', label: 'X (Twitter)', handle: '@sparsh', color: 'hover:border-foreground hover:bg-foreground/5' },
-                    { icon: Globe, href: 'https://instagram.com/sparsh', label: 'Instagram', handle: '@sparsh', color: 'hover:border-[#e4405f] hover:bg-[#e4405f]/10' },
+                    { icon: Github, href: 'https://github.com/singhalsparsh', label: 'GitHub', handle: '@singhalsparsh', color: 'hover:border-[#333] hover:bg-[#333]/10' },
+                    { icon: Linkedin, href: 'https://linkedin.com/in/singhalsparsh', label: 'LinkedIn', handle: '/in/singhalsparsh', color: 'hover:border-[#0a66c2] hover:bg-[#0a66c2]/10' },
                   ].map((social) => (
                     <a
                       key={social.label}

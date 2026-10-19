@@ -4,16 +4,16 @@ import { useState, useEffect, useCallback } from 'react';
 
 const MESSAGES = [
   {
-    icon: '📢',
-    text: 'OPEN FOR WORK - Available for freelance and full-time opportunities',
+    icon: '⚡',
+    text: 'STATUS — Open to Collaborations & Engineering Challenges',
+  },
+  {
+    icon: '🤖',
+    text: 'FLUXAI — Generative AI & diffusion image synthesis platform live',
   },
   {
     icon: '🚀',
-    text: 'NEW PROJECT - Just launched a visual deep learning studio',
-  },
-  {
-    icon: '💡',
-    text: 'HIRING - Looking for exciting collaborations',
+    text: 'INNOV6 — Innovation & testing platform deployed',
   },
 ];
 

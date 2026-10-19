@@ -11,44 +11,50 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 const projects = [
   {
-    title: 'Keythm',
-    tagline: 'Typing Test with Mechanical Audio',
+    title: 'INNOV6',
+    tagline: 'Innovation & Testing Platform',
     description:
-      'A premium typing test application featuring per-key mechanical audio feedback using the Web Audio API. Includes 4 test modes, statistical anti-cheat detection, and full offline PWA support. Designed for typists who appreciate the feel of mechanical keyboards.',
-    tech: ['Next.js', 'TypeScript', 'Web Audio API', 'PWA'],
+      'Web platform for streamlined experimentation, real-time testing workflows, and responsive interface interactions.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'REST APIs'],
+    color: 'from-blue-600 to-indigo-600',
+    screenshots: [
+      'https://i.ibb.co/RkpdQbBH/image.png',
+      'https://i.ibb.co/sv7gFzDD/image.png',
+    ],
+    liveUrl: 'https://innov6.sparshlike.eu.org/',
+    githubUrl: 'https://github.com/singhalsparsh/ai-test',
+  },
+  {
+    title: 'FluxAI',
+    tagline: 'Generative AI & Intelligent Image Generation Platform',
+    description:
+      'Full-stack artificial intelligence application leveraging state-of-the-art generative diffusion models for high-quality visual synthesis with fast response times.',
+    tech: ['Python', 'Generative AI', 'React', 'FastAPI / Node.js'],
+    color: 'from-purple-600 to-pink-600',
+    screenshots: [
+      'https://i.ibb.co/2r3K172/image.png',
+      'https://i.ibb.co/kVjLc236/image.png',
+    ],
+    liveUrl: 'https://ai.sparshlike.eu.org/',
+    githubUrl: 'https://github.com/singhalsparsh/flux-ai',
+  },
+  {
+    title: 'sparshlike.eu.org',
+    tagline: 'Interactive Developer Hub & Portfolio',
+    description:
+      'Personal production ecosystem and technical portal showcasing applications, algorithm progression, and open-source code.',
+    tech: ['Next.js / React', 'Tailwind CSS', 'Cloudflare / Vercel'],
     color: 'from-emerald-500 to-teal-500',
-    screenshots: ['/assets/keythm-1.jpg', '/assets/keythm-2.jpg'],
-    liveUrl: 'https://keythm.app',
-    githubUrl: 'https://github.com/sparsh/keythm',
-  },
-  {
-    title: 'NeuralStudio',
-    tagline: 'Visual Deep Learning Studio',
-    description:
-      'A drag-and-drop deep learning studio that makes neural network design visual and intuitive. Integrates TensorFlow.js for in-browser training, supports API deployment of trained models, and provides real-time visualization of training progress.',
-    tech: ['React', 'TensorFlow.js', 'XYFlow', 'Express'],
-    color: 'from-teal-500 to-cyan-500',
-    screenshots: ['/assets/neural-1.jpg', '/assets/neural-2.jpg'],
-    liveUrl: 'https://neuralstudio.dev',
-    githubUrl: 'https://github.com/sparsh/neuralstudio',
-  },
-  {
-    title: 'Liquid Glass Portfolio',
-    tagline: 'Premium 3D Portfolio',
-    description:
-      'A cutting-edge portfolio website featuring glassmorphism design, interactive 3D elements with Three.js, scroll-driven animations powered by GSAP, a custom cursor, and smooth dark/light mode transitions. Built for developers who want their work to make a statement.',
-    tech: ['Three.js', 'GSAP', 'Tailwind CSS', 'Framer Motion'],
-    color: 'from-emerald-400 to-green-500',
-    screenshots: ['/assets/portfolio-1.jpg', '/assets/portfolio-2.jpg'],
+    screenshots: [],
     liveUrl: 'https://sparshlike.eu.org',
-    githubUrl: 'https://github.com/singhalsparsh/portfolio',
+    githubUrl: 'https://github.com/singhalsparsh',
   },
 ];
 
 const logos = [
-  'Next.js', 'React', 'TypeScript', 'Node.js', 'Python',
-  'AWS', 'Docker', 'GraphQL', 'PostgreSQL', 'MongoDB',
-  'Three.js', 'GSAP', 'Tailwind', 'Framer', 'Vercel',
+  'C++', 'Python', 'React', 'Next.js', 'TypeScript',
+  'Generative AI', 'PyTorch', 'FastAPI', 'Tailwind CSS', 'Linux',
+  'Git', 'GitHub', 'REST APIs', 'Ubuntu', 'Cloudflare',
 ];
 
 export function Projects() {
@@ -115,16 +121,27 @@ export function Projects() {
               >
                 {/* Preview area */}
                 <div
-                  className={`h-36 sm:h-40 md:h-48 bg-gradient-to-br ${project.color} flex items-center justify-center`}
+                  className={`relative h-36 sm:h-40 md:h-48 bg-gradient-to-br ${project.color} flex items-center justify-center overflow-hidden`}
                 >
-                  <div className="text-center p-4">
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 mb-1">
-                      {project.title}
+                  {project.screenshots.length > 0 ? (
+                    <img
+                      src={project.screenshots[0]}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="text-center p-4">
+                      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 mb-1">
+                        {project.title}
+                      </div>
+                      <div className="text-xs sm:text-sm text-white/60">
+                        {project.tagline}
+                      </div>
                     </div>
-                    <div className="text-xs sm:text-sm text-white/60">
-                      {project.tagline}
-                    </div>
-                  </div>
+                  )}
+                  {/* Subtle top/bottom glass gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
                 </div>
 
                 {/* Card content */}
@@ -226,59 +243,71 @@ export function Projects() {
                 </div>
 
                 {/* === IMAGE SLIDER === */}
-                <div className="relative h-40 sm:h-52 md:h-64 lg:h-72 rounded-xl overflow-hidden mb-4 md:mb-6 bg-black/40">
+                <div className="relative h-44 sm:h-60 md:h-72 lg:h-80 rounded-xl overflow-hidden mb-4 md:mb-6 bg-black/40">
                   {/* Slide content */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${projects[selectedProject].color} flex items-center justify-center transition-opacity`}
-                  >
-                    <div className="text-center p-4">
-                      <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white/70">
-                        {projects[selectedProject].title}
-                      </div>
-                      <div className="text-xs sm:text-sm text-white/40 mt-2">
-                        {projects[selectedProject].tagline} - Slide {slideIndex + 1}
+                  {projects[selectedProject].screenshots.length > 0 ? (
+                    <img
+                      src={projects[selectedProject].screenshots[slideIndex]}
+                      alt={`${projects[selectedProject].title} preview ${slideIndex + 1}`}
+                      className="w-full h-full object-cover transition-opacity duration-300"
+                    />
+                  ) : (
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${projects[selectedProject].color} flex items-center justify-center`}
+                    >
+                      <div className="text-center p-4">
+                        <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white/70">
+                          {projects[selectedProject].title}
+                        </div>
+                        <div className="text-xs sm:text-sm text-white/40 mt-2">
+                          {projects[selectedProject].tagline} (Visual Demo)
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Nav arrows */}
-                  <button
-                    onClick={goToPrev}
-                    disabled={slideIndex === 0}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
-                    aria-label="Previous slide"
-                  >
-                    <ChevronLeft size={18} />
-                  </button>
-                  <button
-                    onClick={goToNext}
-                    disabled={slideIndex === projects[selectedProject].screenshots.length - 1}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
-                    aria-label="Next slide"
-                  >
-                    <ChevronRight size={18} />
-                  </button>
-
-                  {/* Dot indicators */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
-                    {projects[selectedProject].screenshots.map((_, i) => (
+                  {/* Nav arrows (only if multiple screenshots) */}
+                  {projects[selectedProject].screenshots.length > 1 && (
+                    <>
                       <button
-                        key={i}
-                        onClick={() => setSlideIndex(i)}
-                        className={`rounded-full transition-all ${
-                          i === slideIndex
-                            ? 'bg-white w-5 md:w-6 h-2'
-                            : 'bg-white/30 hover:bg-white/50 w-2 h-2'
-                        }`}
-                        aria-label={`Go to slide ${i + 1}`}
-                      />
-                    ))}
-                  </div>
+                        onClick={goToPrev}
+                        disabled={slideIndex === 0}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
+                        aria-label="Previous slide"
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button
+                        onClick={goToNext}
+                        disabled={slideIndex === projects[selectedProject].screenshots.length - 1}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
+                        aria-label="Next slide"
+                      >
+                        <ChevronRight size={18} />
+                      </button>
 
-                  {/* Slide counter pill */}
-                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-sm text-xs text-foreground/70">
-                    {slideIndex + 1} / {projects[selectedProject].screenshots.length}
-                  </div>
+                      {/* Dot indicators */}
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
+                        {projects[selectedProject].screenshots.map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSlideIndex(i)}
+                            className={`rounded-full transition-all ${
+                              i === slideIndex
+                                ? 'bg-white w-5 md:w-6 h-2'
+                                : 'bg-white/30 hover:bg-white/50 w-2 h-2'
+                            }`}
+                            aria-label={`Go to slide ${i + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Slide counter pill */}
+                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-sm text-xs text-foreground/70">
+                        {slideIndex + 1} / {projects[selectedProject].screenshots.length}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* === PROJECT DETAILS === */}

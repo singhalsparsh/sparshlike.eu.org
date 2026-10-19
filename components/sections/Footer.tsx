@@ -30,17 +30,15 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/sparsh', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/sparsh', label: 'LinkedIn' },
-    { icon: Globe, href: 'https://x.com/sparsh', label: 'X / Twitter' },
-    { icon: Globe, href: 'https://instagram.com/sparsh', label: 'Instagram' },
+    { icon: Github, href: 'https://github.com/singhalsparsh', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/singhalsparsh', label: 'LinkedIn' },
   ];
 
   const resourceLinks = [
-    { label: 'Source Code', href: '#' },
-    { label: 'Color Themes', href: '#' },
-    { label: 'Uses', href: '/uses' },
-    { label: 'Guestbook', href: '/guestbook' },
+    { label: 'GitHub Profile', href: 'https://github.com/singhalsparsh' },
+    { label: 'FluxAI Platform', href: 'https://ai.sparshlike.eu.org/' },
+    { label: 'INNOV6 Platform', href: 'https://innov6.sparshlike.eu.org/' },
+    { label: 'Personal Ecosystem', href: 'https://sparshlike.eu.org' },
   ];
 
   return (
@@ -56,12 +54,11 @@ export function Footer() {
                   <Sparkles size={16} className="text-white" />
                 </div>
                 <span className="text-lg font-bold bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent">
-                  SPARSH
+                  SPARSH SINGHAL
                 </span>
               </Link>
               <p className="text-sm text-foreground/45 leading-relaxed max-w-xs mx-auto sm:mx-0 mb-5">
-                Building premium digital experiences with cutting-edge technology.
-                Let&apos;s create something remarkable together.
+                Computer Science &amp; Artificial Intelligence Undergraduate. Building intelligent applications &amp; systems with modern architecture.
               </p>
 
               {/* Social links */}
@@ -158,7 +155,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-foreground/30 text-center md:text-left">
               <Heart size={9} className="text-brand-400 shrink-0" />
-              &copy; {new Date().getFullYear()} Sparsh Singhal. All rights reserved.
+              &copy; 2026 Sparsh Singhal. All rights reserved.
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-1 text-[10px] sm:text-xs text-foreground/25">

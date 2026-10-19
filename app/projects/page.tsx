@@ -100,8 +100,8 @@ export default function ProjectsPage() {
               <span className="text-gradient block mt-1">Projects</span>
             </h1>
             <p className="text-base md:text-lg text-foreground/60 leading-relaxed">
-              A curated collection of projects that showcase my expertise in web development,
-              3D graphics, and system design. Each one represents a unique challenge solved.
+              Real-world intelligent applications, testing platforms, and production systems built
+              with modern architectures, low-latency APIs, and clean engineering.
             </p>
           </div>
         </div>
@@ -134,13 +134,23 @@ export default function ProjectsPage() {
             {visibleProjects.map((project, index) => (
               <LiquidGlassCard key={project.title} className="group cursor-pointer" interactive>
                 <button onClick={() => openProject(index)} className="w-full text-left">
-                  <div className={`h-36 sm:h-40 md:h-48 bg-gradient-to-br ${project.color} flex items-center justify-center rounded-t-2xl`}>
-                    <div className="text-center p-4">
-                      <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 mb-1">
-                        {project.title}
+                  <div className={`relative h-36 sm:h-40 md:h-48 bg-gradient-to-br ${project.color} flex items-center justify-center rounded-t-2xl overflow-hidden`}>
+                    {project.screenshots.length > 0 ? (
+                      <img
+                        src={project.screenshots[0]}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="text-center p-4">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white/90 mb-1">
+                          {project.title}
+                        </div>
+                        <div className="text-xs sm:text-sm text-white/60">{project.tagline}</div>
                       </div>
-                      <div className="text-xs sm:text-sm text-white/60">{project.tagline}</div>
-                    </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
                   </div>
                   <div className="p-4 md:p-6">
                     <h3 className="text-base md:text-lg font-semibold text-foreground mb-2 group-hover:text-brand-300 transition-colors">
@@ -194,12 +204,12 @@ export default function ProjectsPage() {
 
           {/* CTA */}
           <div className="text-center mt-12 md:mt-16">
-            <Link href="/contact">
+            <a href="mailto:hello@sparshlike.eu.org">
               <GlassButton variant="primary" size="lg">
                 Have a project idea?
                 <ArrowRight size={16} />
               </GlassButton>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -240,40 +250,52 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Image Slider */}
-                <div className="relative h-40 sm:h-52 md:h-64 lg:h-72 rounded-xl overflow-hidden mb-4 md:mb-6 bg-black/40">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${allProjects[selectedProject].color} flex items-center justify-center transition-opacity`}>
-                    <div className="text-center p-4">
-                      <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white/70">
-                        {allProjects[selectedProject].title}
-                      </div>
-                      <div className="text-xs sm:text-sm text-white/40 mt-2">
-                        {allProjects[selectedProject].tagline} &mdash; Slide {slideIndex + 1}
+                <div className="relative h-44 sm:h-60 md:h-72 lg:h-80 rounded-xl overflow-hidden mb-4 md:mb-6 bg-black/40">
+                  {allProjects[selectedProject].screenshots.length > 0 ? (
+                    <img
+                      src={allProjects[selectedProject].screenshots[slideIndex]}
+                      alt={`${allProjects[selectedProject].title} slide ${slideIndex + 1}`}
+                      className="w-full h-full object-cover transition-opacity duration-300"
+                    />
+                  ) : (
+                    <div className={`absolute inset-0 bg-gradient-to-br ${allProjects[selectedProject].color} flex items-center justify-center`}>
+                      <div className="text-center p-4">
+                        <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white/70">
+                          {allProjects[selectedProject].title}
+                        </div>
+                        <div className="text-xs sm:text-sm text-white/40 mt-2">
+                          {allProjects[selectedProject].tagline} (Visual Demo)
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  <button onClick={goToPrev} disabled={slideIndex === 0}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
-                    aria-label="Previous slide">
-                    <ChevronLeft size={18} />
-                  </button>
-                  <button onClick={goToNext} disabled={slideIndex === allProjects[selectedProject].screenshots.length - 1}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
-                    aria-label="Next slide">
-                    <ChevronRight size={18} />
-                  </button>
+                  {allProjects[selectedProject].screenshots.length > 1 && (
+                    <>
+                      <button onClick={goToPrev} disabled={slideIndex === 0}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
+                        aria-label="Previous slide">
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button onClick={goToNext} disabled={slideIndex === allProjects[selectedProject].screenshots.length - 1}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/50 text-white/60 hover:text-white hover:bg-black/70 transition-all disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm"
+                        aria-label="Next slide">
+                        <ChevronRight size={18} />
+                      </button>
 
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
-                    {allProjects[selectedProject].screenshots.map((_, i) => (
-                      <button key={i} onClick={() => setSlideIndex(i)}
-                        className={`rounded-full transition-all ${i === slideIndex ? 'bg-white w-5 md:w-6 h-2' : 'bg-white/30 hover:bg-white/50 w-2 h-2'}`}
-                        aria-label={`Go to slide ${i + 1}`} />
-                    ))}
-                  </div>
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
+                        {allProjects[selectedProject].screenshots.map((_, i) => (
+                          <button key={i} onClick={() => setSlideIndex(i)}
+                            className={`rounded-full transition-all ${i === slideIndex ? 'bg-white w-5 md:w-6 h-2' : 'bg-white/30 hover:bg-white/50 w-2 h-2'}`}
+                            aria-label={`Go to slide ${i + 1}`} />
+                        ))}
+                      </div>
 
-                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-sm text-xs text-white/60">
-                    {slideIndex + 1} / {allProjects[selectedProject].screenshots.length}
-                  </div>
+                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-sm text-xs text-white/60">
+                        {slideIndex + 1} / {allProjects[selectedProject].screenshots.length}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Details */}
